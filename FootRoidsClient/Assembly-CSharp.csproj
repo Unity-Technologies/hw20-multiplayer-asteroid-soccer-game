@@ -80,6 +80,13 @@
     <Compile Include="Assets\Scripts\GameSceneController.cs" />
     <Compile Include="Assets\Scripts\HUDController.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\MatchCommunicationManager.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\MatchCommunicationManager_nakama.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\MatchMessage.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\MatchMessageGameEnded.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\Session\AuthenticationResponse.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\Session\NakamaSessionManager.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Scripts\NakamaClient.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\alex\AsteroidScript.cs" />
