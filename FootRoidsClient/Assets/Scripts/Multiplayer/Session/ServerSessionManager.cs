@@ -85,14 +85,6 @@ namespace Multiplayer
             GetDeviceId();
         }
 
-        /// <summary>
-        /// Closes Nakama session.
-        /// </summary>
-        protected override void OnDestroy()
-        {
-            Disconnect();
-        }
-
         public void SetIp(string ip)
         {
             if (IsConnected == false)

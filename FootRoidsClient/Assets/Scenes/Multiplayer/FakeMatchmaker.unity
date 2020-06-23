@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 57133000}
   - component: {fileID: 57132999}
   - component: {fileID: 57133002}
+  - component: {fileID: 57133003}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -226,3 +227,15 @@ MonoBehaviour:
     password: brettbre
   - email: marc@marc.marc
     password: marcmarc
+--- !u!114 &57133003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57132998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77200a7429561fa45897ab0826a670e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

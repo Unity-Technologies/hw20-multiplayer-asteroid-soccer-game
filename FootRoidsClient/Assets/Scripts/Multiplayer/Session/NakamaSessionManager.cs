@@ -199,14 +199,6 @@ namespace Multiplayer
             //await ConnectAsync();
         }
 
-        /// <summary>
-        /// Closes Nakama session.
-        /// </summary>
-        protected override void OnDestroy()
-        {
-            Disconnect();
-        }
-
         #endregion
 
         #region Authentication
