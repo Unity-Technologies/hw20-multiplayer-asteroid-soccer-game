@@ -77,12 +77,11 @@
     <Compile Include="Assets\Nakama\Snippets\WebGLExample.cs" />
     <Compile Include="Assets\Nakama\UnityLogger.cs" />
     <Compile Include="Assets\Nakama\UnityWebRequestAdapter.cs" />
-    <Compile Include="Assets\Scripts\GameSceneController.cs" />
-    <Compile Include="Assets\Scripts\HUDController.cs" />
-    <Compile Include="Assets\Scripts\NakamaClient.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\alex\AsteroidScript.cs" />
-    <Compile Include="Assets\Scripts\alex\spaceshipcontrols.cs" />
+    <Compile Include="Assets\Scripts\alex\GameSceneController.cs" />
+    <Compile Include="Assets\Scripts\alex\HUDController.cs" />
+    <Compile Include="Assets\Scripts\alex\NakamaClient.cs" />
+    <Compile Include="Assets\Scripts\alex\PlayerController.cs" />
     <Compile Include="Assets\Scripts\brettScripts\NakamaTest.cs" />
     <None Include="Assets\Nakama\link.xml" />
     <None Include="Assets\Nakama\Version.txt" />
@@ -270,16 +269,16 @@
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Nakama">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Nakama/Plugins/Nakama.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Nakama/Plugins/Nakama.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -636,64 +635,64 @@
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Monetization">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>/Users/matthew.brown/Documents/hackweek2020/github/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
