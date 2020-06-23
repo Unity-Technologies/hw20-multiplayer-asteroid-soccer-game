@@ -38,7 +38,7 @@ namespace Multiplayer
         private bool allPlayersAdded;
         private bool matchJoined;
         private bool isLeaving;
-        private Queue<>
+        private Queue<IncommingMessageState> inboundMessages = new Queue<IncommingMessageState>();
 
         private void Start()
         {
@@ -63,7 +63,8 @@ namespace Multiplayer
                 OnGameStarted?.Invoke();
                 while(inboundMessages.Count > 0)
                 {
-
+                    IncommingMessageState inboundMessage = inboundMessages.Dequeue();
+                    ReceiveMatchStateHandle(inboundMessage.opCode, inboundMessage.message);
                 }
             });            
         }
@@ -98,6 +99,23 @@ namespace Multiplayer
                         StartGame();
                     }
                 }
+            }
+        }
+
+        public void ReceiveMatchStateHandle(long opCode, string messageJson)
+        {
+            if(GameStarted == false)
+            {
+                inboundMessages.Enqueue(new IncommingMessageState(opCode, messageJson));
+            }
+
+            switch((MatchMessageType)opCode)
+            {
+                case MatchMessageType.MatchEnded:
+                    break;
+                default:
+                   
+
             }
         }
     }

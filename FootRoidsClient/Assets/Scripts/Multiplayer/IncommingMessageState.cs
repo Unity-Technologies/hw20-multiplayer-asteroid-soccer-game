@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace DemoGame.Scripts.Gameplay.NetworkCommunication.MatchStates
+namespace Multiplayer
 {
 
     /// <summary>

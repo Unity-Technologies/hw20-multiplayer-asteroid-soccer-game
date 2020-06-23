@@ -79,10 +79,12 @@
     <Compile Include="Assets\Nakama\UnityWebRequestAdapter.cs" />
     <Compile Include="Assets\Scripts\GameSceneController.cs" />
     <Compile Include="Assets\Scripts\HUDController.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\IncommingMessageState.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\MatchCommunicationManager.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\MatchCommunicationManager_nakama.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\MatchMessage.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\MatchMessageGameEnded.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\MatchMessageType.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\Session\AuthenticationResponse.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\Session\NakamaSessionManager.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\Singleton.cs" />
