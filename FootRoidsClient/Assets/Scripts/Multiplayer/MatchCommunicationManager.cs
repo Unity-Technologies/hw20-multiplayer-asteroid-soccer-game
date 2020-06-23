@@ -18,6 +18,8 @@ namespace Multiplayer
         public event Action<MatchMessageGameEnded> OnGameEnded;
 
         public string CurrentHostId { private set; get; }
+        public string MatchId { private set; get; }
+        
 
         public bool IsHost
         {
@@ -80,6 +82,34 @@ namespace Multiplayer
             _socket.ReceivedMatchPresence -= OnMatchPresence;
         }
 
+        public async void JoinMatchAsync(IMatchmakerMatched matched)
+        {
+            ChooseHost(matched);
+
+            Players = new List<IUserPresence>();
+
+            try
+            {
+                // Listen to incomming match messages and user connection changes
+                _socket.ReceivedMatchPresence += OnMatchPresence;
+                _socket.ReceivedMatchState += ReceiveMatchStateMessage;
+
+                // Join the match
+                IMatch match = await _socket.JoinMatchAsync(matched);
+                // Set current match id
+                // It will be used to leave the match later
+                MatchId = match.Id;
+                Debug.Log("Joined match with id: " + match.Id + "; presences count: " + match.Presences.Count());
+
+                // TODO: deal with duplicate users (probably not in scope for this)
+                StartGame();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Couldn't join match: " + e.Message);
+            }
+        }
+
         private void OnMatchPresence(IMatchPresenceEvent e)
         {
             foreach(IUserPresence user in e.Joins)
@@ -102,6 +132,18 @@ namespace Multiplayer
             }
         }
 
+        private void ReceiveMatchStateMessage(IMatchState matchState)
+        {
+            string messageJson = System.Text.Encoding.UTF8.GetString(matchState.State);
+
+            if (string.IsNullOrEmpty(messageJson))
+            {
+                return;
+            }
+
+            ReceiveMatchStateHandle(matchState.OpCode, messageJson);
+        }
+
         public void ReceiveMatchStateHandle(long opCode, string messageJson)
         {
             if(GameStarted == false)
@@ -118,6 +160,26 @@ namespace Multiplayer
                     break;
 
             }
+        }
+
+        private void ChooseHost(IMatchmakerMatched matched)
+        {
+            // Add the session id of all users connected to the match
+            List<string> userSessionIds = new List<string>();
+            foreach (IMatchmakerUser user in matched.Users)
+            {
+                userSessionIds.Add(user.Presence.SessionId);
+            }
+
+            // Perform a lexicographical sort on list of user session ids
+            userSessionIds.Sort();
+
+            // First user from the sorted list will be the host of current match
+            string hostSessionId = userSessionIds.First();
+
+            // Get the user id from session id
+            IMatchmakerUser hostUser = matched.Users.First(x => x.Presence.SessionId == hostSessionId);
+            CurrentHostId = hostUser.Presence.UserId;
         }
     }
 }
