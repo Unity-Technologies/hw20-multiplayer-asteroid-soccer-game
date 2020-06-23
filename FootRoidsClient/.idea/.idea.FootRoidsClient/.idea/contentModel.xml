@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\brett\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\brett\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_FootRoidsClient.-1448261495.00" t="ExcludeRecursive" />
+    <e p="C:\Users\brett\Documents\UnityProjects\Hackweek2020\hw20-multiplayer-asteroid-soccer-game\FootRoidsClient" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Nakama" t="Include">
+          <e p="ClientExtensions.cs" t="Include" />
+          <e p="JsWebSocketAdapter.cs" t="Include" />
+          <e p="link.xml" t="Include" />
+          <e p="Snippets" t="Include">
+            <e p="AccountAndUsers.cs" t="Include" />
+            <e p="DeviceAuthentication.cs" t="Include" />
+            <e p="MatchmakerWithRelayedMultiplayer.cs" t="Include" />
+            <e p="NakamaManager.cs" t="Include" />
+            <e p="NakamaManagerUsage.cs" t="Include" />
+            <e p="RealtimeChatRoom.cs" t="Include" />
+            <e p="RejoinChatAfterDisconnect.cs" t="Include" />
+            <e p="SocketConnect.cs" t="Include" />
+            <e p="WebGLConnect.cs" t="Include" />
+            <e p="WebGLExample.cs" t="Include" />
+          </e>
+          <e p="UnityLogger.cs" t="Include" />
+          <e p="UnityWebRequestAdapter.cs" t="Include" />
+          <e p="Version.txt" t="Include" />
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="GitHub" t="Include">
+            <e p="Editor" t="Include">
+              <e p="credits.txt" t="Include" />
+              <e p="eula.txt" t="Include" />
+              <e p="ExtensionLoader.cs" t="Include" />
+              <e p="UnityAPIWrapper.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scenes" t="Include">
+          <e p="brettScripts" t="Include">
+            <e p="NakamaTest.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="alex" t="Include">
+            <e p="AsteroidScript.cs" t="Include" />
+            <e p="spaceshipcontrols.cs" t="Include" />
+          </e>
+          <e p="GameSceneController.cs" t="Include" />
+          <e p="HUDController.cs" t="Include" />
+          <e p="NakamaClient.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
+        </e>
+      </e>
+      <e p="FootRoidsClient.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
