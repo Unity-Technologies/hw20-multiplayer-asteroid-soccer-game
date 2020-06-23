@@ -84,6 +84,7 @@ namespace Multiplayer
 
         public async void JoinMatchAsync(IMatchmakerMatched matched)
         {
+            Debug.Log("HERE");
             ChooseHost(matched);
 
             Players = new List<IUserPresence>();

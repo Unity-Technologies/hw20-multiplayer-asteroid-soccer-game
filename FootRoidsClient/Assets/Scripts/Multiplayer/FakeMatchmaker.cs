@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Multiplayer;
 using UnityEngine;
@@ -43,19 +44,14 @@ namespace FootRoids
                     {
                         m_Match = match;
                     }
-                    
-                    
-                    /*UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                    {
-                        ISocket socket = NakamaSessionManager.Instance.Socket;
-                        socket.ReceivedMatchmakerMatched -= OnMatchmakerMatched;
 
-                        StartCoroutine(LoadBattle(e));
-                    });*/
-                    
-                    
-                    
-                    
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        //ISocket socket = NakamaSessionManager.Instance.Socket;
+                        //socket.ReceivedMatchmakerMatched -= OnMatchmakerMatched;
+
+                        StartCoroutine(LoadGame(matched));
+                    });
                 };
 
                 ServerSessionManager.Instance.Socket.ReceivedMatchState += async (state) =>
@@ -92,5 +88,19 @@ namespace FootRoids
                 socket.SendMatchStateAsync(m_Match.Id, 1, newState);
             }
         }
+
+        private IEnumerator LoadGame(IMatchmakerMatched matched)
+        {
+            AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MatchScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("FakeMatchmaker");
+            MatchCommunicationManager.Instance.JoinMatchAsync(matched);
+        }
+
     }
 }
