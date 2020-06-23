@@ -219,6 +219,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Users:
+<<<<<<< HEAD
+  - email: test1@gmail.com
+    password: sodayoda
+  - email: test2@gmail.com
+    password: sodayoda
+--- !u!1 &163715018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163715021}
+  - component: {fileID: 163715020}
+  - component: {fileID: 163715019}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &163715019
+=======
   - email: matt@matt.matt
     password: mattmatt
   - email: jen@jen.jen
@@ -228,14 +253,53 @@ MonoBehaviour:
   - email: marc@marc.marc
     password: marcmarc
 --- !u!114 &57133003
+>>>>>>> e79d04348099986d9683b107394115e035114f61
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 163715018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d441c26ae7706424395d66dbbb14a939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCount: 2
+--- !u!114 &163715020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163715018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acf9284f94724f80a4bec252b3dec11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serverAddress: 207.254.17.33
+  _port: 7350
+--- !u!4 &163715021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163715018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
   m_GameObject: {fileID: 57132998}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77200a7429561fa45897ab0826a670e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+>>>>>>> e79d04348099986d9683b107394115e035114f61

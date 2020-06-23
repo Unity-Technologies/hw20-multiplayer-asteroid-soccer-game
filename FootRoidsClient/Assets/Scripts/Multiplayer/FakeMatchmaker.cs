@@ -6,6 +6,7 @@ using UnityEngine;
 
 using Nakama;
 using Nakama.TinyJson;
+using UnityEngine.SceneManagement;
 
 namespace FootRoids
 {
@@ -36,23 +37,7 @@ namespace FootRoids
 
                 ServerSessionManager.Instance.Socket.ReceivedChannelMessage += (message) => { Debug.Log("Message Received: " + message); };
 
-                ServerSessionManager.Instance.Socket.ReceivedMatchmakerMatched += async (matched) =>
-                {
-                    Debug.Log("Matched!");
-                    var match = await ServerSessionManager.Instance.Socket.JoinMatchAsync(matched);
-                    if (m_Match == null)
-                    {
-                        m_Match = match;
-                    }
-
-                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                    {
-                        //ISocket socket = NakamaSessionManager.Instance.Socket;
-                        //socket.ReceivedMatchmakerMatched -= OnMatchmakerMatched;
-
-                        StartCoroutine(LoadGame(matched));
-                    });
-                };
+                ServerSessionManager.Instance.Socket.ReceivedMatchmakerMatched += MatchmakerMatched;
 
                 ServerSessionManager.Instance.Socket.ReceivedMatchState += async (state) =>
                 {
@@ -65,6 +50,32 @@ namespace FootRoids
             }
         }
 
+        void MatchmakerMatched(IMatchmakerMatched matched)
+        {
+            Debug.Log("Matched!");
+                    
+            UnityMainThreadDispatcher.Instance().Enqueue(() =>
+            {
+                ISocket socket = ServerSessionManager.Instance.Socket;
+                socket.ReceivedMatchmakerMatched -= MatchmakerMatched;
+
+                StartCoroutine(LoadStadium(matched));
+            });
+        }
+        
+        IEnumerator LoadStadium(IMatchmakerMatched matched)
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Stadium", LoadSceneMode.Additive);
+         
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+         
+            SceneManager.UnloadSceneAsync("FakeMatchmaker");
+            MatchCommunicationManager.Instance.JoinMatchAsync(matched);
+        }
+        
         void OnApplicationQuit()
         {
             foreach (var socket in m_Sockets)

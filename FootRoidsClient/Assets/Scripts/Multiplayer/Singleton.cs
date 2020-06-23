@@ -55,38 +55,16 @@ namespace Multiplayer
                     // Searching for an active instance of type T in the scene.
                     if (_instance == null)
                     {
-                        _instance = FindObjectOfType<T>();
+                        var go = new GameObject(typeof(T).ToString());
+                        go.AddComponent<T>();
+                        
+                        _instance = go.GetComponent<T>();
+                        
+                        DontDestroyOnLoad(go);
                     }
 
                     return _instance;
                 }
-            }
-        }
-
-        #endregion
-
-        #region Monobehaviour
-
-        /// <summary>
-        /// Checking if an instance of <see cref="Singleton{T}"/> already exists in the scene.
-        /// If it exists, destroy this object.
-        /// </summary>
-        protected virtual void Awake()
-        {
-            if (Instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        /// <summary>
-        /// Removes the reference to this object on destroy.
-        /// </summary>
-        protected virtual void OnDestroy()
-        {
-            if (Instance == this)
-            {
-                _instance = null;
             }
         }
 

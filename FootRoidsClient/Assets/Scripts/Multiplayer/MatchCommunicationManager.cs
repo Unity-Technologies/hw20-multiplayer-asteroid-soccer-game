@@ -71,12 +71,6 @@ namespace Multiplayer
             });            
         }
 
-        protected override void OnDestroy()
-        {
-            Debug.Log("Implement me!!!");
-   
-        }
-
         private void GameEnded(MatchMessageGameEnded obj)
         {
             _socket.ReceivedMatchPresence -= OnMatchPresence;
