@@ -25,7 +25,7 @@ namespace Multiplayer
         {
             get
             {
-                return CurrentHostId == NakamaSessionManager.Instance.Session.UserId;
+                return CurrentHostId == ServerSessionManager.Instance.Session.UserId;
             }
         }
 
@@ -35,7 +35,7 @@ namespace Multiplayer
 
         public bool GameStarted { private set; get; }
 
-        private ISocket _socket { get { return NakamaSessionManager.Instance.Socket;  } }
+        private ISocket _socket { get { return ServerSessionManager.Instance.Socket;  } }
 
         private bool allPlayersAdded;
         private bool matchJoined;
