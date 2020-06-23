@@ -114,7 +114,8 @@ namespace Multiplayer
                 case MatchMessageType.MatchEnded:
                     break;
                 default:
-                   
+                    Debug.Log("Needs more implementation!");
+                    break;
 
             }
         }
