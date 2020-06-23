@@ -79,6 +79,7 @@
     <Compile Include="Assets\Nakama\UnityWebRequestAdapter.cs" />
     <Compile Include="Assets\Scripts\GameSceneController.cs" />
     <Compile Include="Assets\Scripts\HUDController.cs" />
+    <Compile Include="Assets\Scripts\Multiplayer\MatchCommunicationManager.cs" />
     <Compile Include="Assets\Scripts\NakamaClient.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\alex\AsteroidScript.cs" />
