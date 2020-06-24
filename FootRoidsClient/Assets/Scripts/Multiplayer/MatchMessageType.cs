@@ -22,23 +22,15 @@ namespace Multiplayer
     /// </summary>
     public enum MatchMessageType
     {
-        #region MATCH
-
         MatchStarted,
 
         MatchEnded,
 
         MatchReward,
 
-        #endregion
-
-        #region PLAYERS
-
         ActionPointsAdded,
 
-        #endregion
-
-        #region UNITS
+        AsteroidSpawned,
 
         UnitSpawned,
 
@@ -46,15 +38,7 @@ namespace Multiplayer
 
         UnitAttacked,
 
-        #endregion
-
-        #region SPELLS
-
         SpellActivated,
-
-        #endregion
-
-        #region CARDS
 
         StartingHand,
 
@@ -66,14 +50,8 @@ namespace Multiplayer
 
         CardPlayDenial,
 
-        #endregion
-
-        #region EMOTES
-
         EmoteSendRequest,
 
         EmoteReceived,
-
-        #endregion
     }
 }

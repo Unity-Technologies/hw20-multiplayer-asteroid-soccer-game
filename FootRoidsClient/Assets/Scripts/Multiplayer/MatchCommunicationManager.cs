@@ -107,7 +107,33 @@ namespace Multiplayer
             }
         }
 
-        private void OnMatchPresence(IMatchPresenceEvent e)
+        // send messages to server
+        public void SendMatchStateMessage<T>(MatchMessageType opCode, T message)
+            where T : MatchMessage<T>
+        {
+            try
+            {
+                //Packing MatchMessage object to json
+                string json = MatchMessage<T>.ToJson(message);
+
+                //Sending match state json along with opCode needed for unpacking message to server.
+                //Then server sends it to other players
+                _socket.SendMatchStateAsync(MatchId, (long)opCode, json);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error while sending match state: " + e.Message);
+            }
+        }
+
+        // this is  for _host only_ to send messages to themself
+        public void SendMatchStateMessageSelf<T>(MatchMessageType opCode, T message)
+            where T : MatchMessage<T>
+        {
+            Debug.Log("Implement me!!!");
+        }
+
+            private void OnMatchPresence(IMatchPresenceEvent e)
         {
             foreach(IUserPresence user in e.Joins)
             {
