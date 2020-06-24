@@ -12,8 +12,6 @@ namespace Multiplayer
 {
     public class MatchCommunicationManager : Singleton<MatchCommunicationManager>
     {
-        [SerializeField] private int _playerCount = 1;
-
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
 
@@ -31,7 +29,7 @@ namespace Multiplayer
 
         public List<IUserPresence> Players { private set; get; }
 
-        public bool AllPlayersJoined {  get { return Players.Count == _playerCount;  } }
+        //public bool AllPlayersJoined {  get { return Players.Count == _playerCount;  } }
 
         public bool GameStarted { private set; get; }
 
@@ -117,12 +115,8 @@ namespace Multiplayer
                 {
                     Debug.Log("User " + user.Username + " joined match");
                     Players.Add(user);
-                    // NOTE: not sure how we are handling opponent logic yet
-                    //if (user.UserId != NakamaSessionManager.Instance.Session.UserId)
-                    //{
-                    //    OpponentId = user.UserId;
-                    //}
-                    if (AllPlayersJoined == true)
+                    
+                    if (Players.Count == e.Joins.Count<IUserPresence>())
                     {
                         allPlayersAdded = true;
                         StartGame();
@@ -193,11 +187,11 @@ namespace Multiplayer
                 {
                     Debug.Log("User +" + user.Username + " joined match");
 
-                    Players.Add(user);
+                    Players.Add(user);                    
 
                     // TODO: need to set opponent id?
 
-                    if(AllPlayersJoined == true)
+                    if(Players.Count == match.Presences.Count<IUserPresence>())
                     {
                         allPlayersAdded = true;
                     }
