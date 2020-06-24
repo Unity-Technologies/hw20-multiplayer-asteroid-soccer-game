@@ -49,8 +49,7 @@ public class PlayerController : MonoBehaviour
             var matchId = MatchCommunicationManager.Instance.MatchId;
             var opCode = 341;
             
-            var vec2Pos = new Vector2(pos.x, pos.y);
-            var newState = new Dictionary<string, Vector2> {{"position", vec2Pos}}.ToJson();
+            var newState = new Dictionary<string, float> {{"x", pos.x}, {"y", pos.y}}.ToJson();
             ServerSessionManager.Instance.Socket.SendMatchStateAsync(matchId, opCode, newState);
         }
 
