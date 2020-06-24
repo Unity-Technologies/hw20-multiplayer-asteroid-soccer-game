@@ -20,7 +20,7 @@ public class GameSceneController : MonoBehaviour
 
     private int totalPoints;
     private HUDController hUDController;
-    private PlayerController player;
+    //private PlayerController player;
 
     public GameObject[] playerList;
     public GameObject playerObjectPrefab;
@@ -33,8 +33,8 @@ public class GameSceneController : MonoBehaviour
     {
         hUDController = FindObjectOfType<HUDController>();
         screenBounds = GetScreenBounds();
-        player = FindObjectOfType<PlayerController>();
-        playerObjectPrefab = Resources.Load<GameObject>("ship");
+        //player = FindObjectOfType<PlayerController>();
+        //playerObjectPrefab = Resources.Load<GameObject>("ship");
         StartCoroutine(SpawnAsteroids());
         numOfPlayers = 1;
         StartCoroutine(SpawnPlayers());
