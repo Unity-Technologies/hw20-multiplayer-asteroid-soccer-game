@@ -16,15 +16,12 @@
 
 using UnityEngine;
 
-namespace Multiplayer
-{
-
+namespace Multiplayer {
     /// <summary>
     /// Inherit from this base class to create a singleton.
     /// e.g. public class MyClassName : Singleton<MyClassName> {}
     /// </summary>
-    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
-    {
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
         #region Variables
 
         /// <summary>
@@ -44,22 +41,18 @@ namespace Multiplayer
         /// <summary>
         /// Returns the reference to the singleton instance of type <see cref="T"/>.
         /// </summary>
-        public static T Instance
-        {
-            get
-            {
+        public static T Instance {
+            get {
                 // Lock preventing from simultaneous access by multiple sources.
-                lock (_lock)
-                {
+                lock (_lock) {
                     // If it's the first time accessing this singleton Instance, _instance will always be null
                     // Searching for an active instance of type T in the scene.
-                    if (_instance == null)
-                    {
+                    if (_instance == null) {
                         var go = new GameObject(typeof(T).ToString());
                         go.AddComponent<T>();
-                        
+
                         _instance = go.GetComponent<T>();
-                        
+
                         DontDestroyOnLoad(go);
                     }
 
@@ -70,5 +63,4 @@ namespace Multiplayer
 
         #endregion
     }
-
 }
