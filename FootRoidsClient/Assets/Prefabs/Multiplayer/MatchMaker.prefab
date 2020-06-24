@@ -40,11 +40,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8579451657641387261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73861eff7d6d84947b59c966e8b4ce02, type: 3}
+  m_Script: {fileID: 11500000, guid: 065df3d1ac9c895458301e16c55b200b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Users:
-  - email: blah@gmail.com
-    password: jshdlfjkhasjkdfhalsjkd
-  - email: gah@gmail.com
-    password: jkasdhfjkahsdjkfklas
+  - email: marc@marc.marc
+    password: marcmarc
+  - email: bob@bob.bob
+    password: bobbobbo
