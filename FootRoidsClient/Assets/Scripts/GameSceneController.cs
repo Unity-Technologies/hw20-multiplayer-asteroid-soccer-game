@@ -12,18 +12,14 @@ public class GameSceneController : MonoBehaviour
     [Space]
     public Vector3 screenBounds;
 
-    [Header("Screen Dimensions")]
-    [Space]
-    public float screenTop;
-    public float screenBottom;
-    public float screenRight;
-    public float screenLeft;
-
     [Header("IsMaster")]
     public bool isMaster;
 
-    private HUDController hUDController;
+    public int maxAsteroids;
+    public GameObject asteroid;
+
     private int totalPoints;
+    private HUDController hUDController;
     private PlayerController player;
 
     // Start is called before the first frame update
@@ -32,7 +28,8 @@ public class GameSceneController : MonoBehaviour
         hUDController = FindObjectOfType<HUDController>();
         screenBounds = GetScreenBounds();
         player = FindObjectOfType<PlayerController>();
-        // Spawn asteroids in random locations
+
+        StartCoroutine(SpawnAsteroids());
     }
 
     // Update is called once per frame
@@ -40,13 +37,24 @@ public class GameSceneController : MonoBehaviour
     {
     }
 
+    // Spawn Asteroids in random locations
+    private IEnumerator SpawnAsteroids()
+    {
+        for (int currentAsteroids = 0; currentAsteroids < maxAsteroids; currentAsteroids++)
+        {
+            float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
+            float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
+
+            Instantiate(asteroid, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+            yield return true;
+        };
+    }
+
     // Get the screen bounds
     private Vector3 GetScreenBounds()
     {
         Camera mainCamera = Camera.main;
         Vector3 screenVector = new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z);
-
-        Debug.Log($"ScreenToWorldPoint is: {mainCamera.ScreenToWorldPoint(screenVector)}");
 
         return mainCamera.ScreenToWorldPoint(screenVector);
     }

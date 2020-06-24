@@ -29,33 +29,34 @@ public class AsteroidScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //screen wrapping
-        Vector2 newPos =  transform.position;
-
-        //begin if changes 
-        if(transform.position.y > gameSceneController.screenTop)
-        {
-            newPos.y = gameSceneController.screenBottom;
-        }
-        if(transform.position.y < gameSceneController.screenBottom){
-            newPos.y = gameSceneController.screenTop;
-        }
-    
-        if(transform.position.x > gameSceneController.screenRight){
-            newPos.x = gameSceneController.screenLeft;
-        }
-        if(transform.position.x < gameSceneController.screenLeft){
-            newPos.x = gameSceneController.screenRight;
-        }
-
-        //set the position back to the transform
-        transform.position = newPos;
+        MoveAsteroid();
     }
 
-    void  OnTriggerEnter2D(Collider2D other) 
+    private void MoveAsteroid()
     {
-        //Debug.Log("Hit by " +  other.name);
-        //destroy the bullet 
-        Destroy(other.gameObject);
+        // Screen wrapping
+        Vector2 newPos = transform.position;
+
+        // Check if the Asteroid has moved out of screenBounds
+        if (transform.position.y > gameSceneController.screenBounds.y)
+        {
+            newPos.y = -gameSceneController.screenBounds.y;
+        }
+        if (transform.position.y < -gameSceneController.screenBounds.y)
+        {
+            newPos.y = gameSceneController.screenBounds.y;
+        }
+
+        if (transform.position.x > gameSceneController.screenBounds.x)
+        {
+            newPos.x = -gameSceneController.screenBounds.x;
+        }
+        if (transform.position.x < -gameSceneController.screenBounds.x)
+        {
+            newPos.x = gameSceneController.screenBounds.x;
+        }
+
+        // Set the position back to the transform
+        transform.position = newPos;
     }
 }
