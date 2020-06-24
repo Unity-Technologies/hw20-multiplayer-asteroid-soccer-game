@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float turnThrust;
     public float deathSpeed;
     public float mediumSpeed;
+    public float maxSpeed;
 
     Vector3 m_PreviousPos = new Vector3();
     
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         gameSceneController = FindObjectOfType<GameSceneController>();
         rb = GetComponentInParent<Rigidbody2D>();
+        sr = GetComponentInParent<SpriteRenderer>();
 
         m_PreviousPos = transform.position;
     }
@@ -57,10 +59,11 @@ public class PlayerController : MonoBehaviour
         
         // Get input and apply thrust
         thrustInput = Input.GetAxis("Vertical");
-        rb.AddRelativeForce(Vector2.up * thrustInput);
-        
-        
+        rb.AddRelativeForce(Vector2.up * thrustInput * thrust);
         //rb.AddTorque(-turnInput * turnThrust);
+        if (rb.velocity.magnitude > maxSpeed) {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
     private void ChangeColor()
