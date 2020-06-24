@@ -120,11 +120,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 304458594359201566}
   sr: {fileID: 304458594359201565}
-  thrust: 60
+  thrust: 30
   turnThrust: 500
-  gameSceneController: {fileID: 0}
   deathSpeed: 6
   mediumSpeed: 3
+  maxSpeed: 10
+  gameSceneController: {fileID: 0}
 --- !u!70 &304458594359201563
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

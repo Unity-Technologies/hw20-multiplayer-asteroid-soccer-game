@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float turnThrust;
     public float deathSpeed;
     public float mediumSpeed;
+    public float maxSpeed;
 
     // Access the GameSceneController
     public GameSceneController gameSceneController;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         gameSceneController = FindObjectOfType<GameSceneController>();
         rb = GetComponentInParent<Rigidbody2D>();
+        sr = GetComponentInParent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,8 +38,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate() {
         // Get input and apply thrust
         thrustInput = Input.GetAxis("Vertical");
-        rb.AddRelativeForce(Vector2.up * thrustInput);
+        rb.AddRelativeForce(Vector2.up * thrustInput * thrust);
         //rb.AddTorque(-turnInput * turnThrust);
+        if (rb.velocity.magnitude > maxSpeed) {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
     private void ChangeColor()
