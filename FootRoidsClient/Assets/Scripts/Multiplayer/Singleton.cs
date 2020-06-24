@@ -34,10 +34,6 @@ namespace Multiplayer {
         /// </summary>
         private static T _instance;
 
-        #endregion
-
-        #region Properties
-
         /// <summary>
         /// Returns the reference to the singleton instance of type <see cref="T"/>.
         /// </summary>
@@ -52,7 +48,6 @@ namespace Multiplayer {
                         go.AddComponent<T>();
 
                         _instance = go.GetComponent<T>();
-
                         DontDestroyOnLoad(go);
                     }
 
@@ -61,6 +56,12 @@ namespace Multiplayer {
             }
         }
 
-        #endregion
+        protected virtual void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                _instance = null;
+            }
+        }
     }
 }

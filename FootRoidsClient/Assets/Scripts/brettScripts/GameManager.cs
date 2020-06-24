@@ -5,26 +5,43 @@ using Multiplayer;
 using Nakama;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singleton<GameManager> {
 
     [SerializeField] private GameObject _shipPrefab;
     private Dictionary<string, GameObject> _networkedGameObjects = new Dictionary<string, GameObject>();
 
-    private void Awake() {
-        MatchCommunicationManager.Instance.OnGameStarted += InitializeGame;
+    private void Start()
+    {
         MatchCommunicationManager.Instance.OnGameEnded += EndGame;
+
+        if(MatchCommunicationManager.Instance.GameStarted)
+        {
+            Debug.Log("Game already started, initializing");
+            InitializeGame();
+        }
+        else
+        {
+            Debug.Log("Game not started, subscribing");
+            MatchCommunicationManager.Instance.OnGameStarted += InitializeGame;
+        }
     }
 
     private void InitializeGame() {
         MatchCommunicationManager.Instance.OnGameStarted -= InitializeGame;
         var players = MatchCommunicationManager.Instance.Players;
-        foreach (var player in players) {
-            CreateShip(player);
+        if(players != null)
+        {
+            foreach (var player in players)
+            {
+                CreateShip(player);
+            }
         }
+
+        Multiplayer.GameElementsManager.Instance.PopulateGameElements();
     }
 
-    private void EndGame(MatchMessageGameEnded message) {
-        MatchCommunicationManager.Instance.OnGameEnded -= EndGame;
+    private void EndGame(MatchMessageGameEnded message)
+    {
     }
 
     public void CreateShip(IUserPresence owner) {
@@ -38,5 +55,10 @@ public class GameManager : MonoBehaviour {
 
     public GameObject GetObjectWithNetworkId(string id) {
         return _networkedGameObjects[id];
+    }
+
+    protected override void OnDestroy()
+    {
+        MatchCommunicationManager.Instance.OnGameEnded -= EndGame;
     }
 }
