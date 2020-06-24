@@ -19,7 +19,6 @@ namespace Multiplayer
 
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
-        
 
         public bool IsHost
         {
@@ -38,7 +37,6 @@ namespace Multiplayer
         private ISocket _socket { get { return ServerSessionManager.Instance.Socket;  } }
 
         private bool allPlayersAdded;
-        private bool matchJoined;
         private bool isLeaving;
         private Queue<IncommingMessageState> inboundMessages = new Queue<IncommingMessageState>();
 
@@ -53,7 +51,7 @@ namespace Multiplayer
             {
                 return;
             }
-            if(allPlayersAdded == false || matchJoined == false)
+            if(allPlayersAdded == false)
             {
                 return;
             }
@@ -68,7 +66,7 @@ namespace Multiplayer
                     IncommingMessageState inboundMessage = inboundMessages.Dequeue();
                     ReceiveMatchStateHandle(inboundMessage.opCode, inboundMessage.message);
                 }
-            });            
+            });
         }
 
         private void GameEnded(MatchMessageGameEnded obj)
@@ -79,27 +77,27 @@ namespace Multiplayer
         public async void JoinMatchAsync(IMatchmakerMatched matched)
         {
             ChooseHost(matched);
-
             Players = new List<IUserPresence>();
-
             try
             {
-                // Listen to incomming match messages and user connection changes
+                // Listen to incoming match messages and user connection changes
                 _socket.ReceivedMatchPresence += OnMatchPresence;
                 _socket.ReceivedMatchState += ReceiveMatchStateMessage;
 
                 // Join the match
-                IMatch match = await _socket.JoinMatchAsync(matched);
+                var match = await _socket.JoinMatchAsync(matched);
                 // Set current match id
                 // It will be used to leave the match later
                 MatchId = match.Id;
+
                 Debug.Log("Joined match with id: " + match.Id + "; presences count: " + match.Presences.Count());
+                foreach (var user in match.Presences) {
+                    Debug.Log("User: " + user.Username);
+                }
 
-
-                bool playersJoin = AddConnectedPlayers(match);
-                if(playersJoin)
+                AddConnectedPlayers(match);
+                if(allPlayersAdded)
                 {
-                    matchJoined = true;
                     StartGame();
                 }
             }
@@ -122,6 +120,9 @@ namespace Multiplayer
                     //{
                     //    OpponentId = user.UserId;
                     //}
+                    
+                    Debug.Log("Player Count: " + Players.Count);
+                    
                     if (AllPlayersJoined == true)
                     {
                         allPlayersAdded = true;
@@ -161,7 +162,6 @@ namespace Multiplayer
                 default:
                     Debug.Log("Needs more implementation!");
                     break;
-
             }
         }
 
@@ -185,31 +185,20 @@ namespace Multiplayer
             CurrentHostId = hostUser.Presence.UserId;
         }
 
-        private bool AddConnectedPlayers(IMatch match)
+        private void AddConnectedPlayers(IMatch match)
         {
             foreach(IUserPresence user in match.Presences)
             {
                 if(Players.FindIndex(x => x.UserId == user.UserId) == -1)
                 {
                     Debug.Log("User +" + user.Username + " joined match");
-
                     Players.Add(user);
-
-                    // TODO: need to set opponent id?
-
-                    if(AllPlayersJoined == true)
-                    {
-                        allPlayersAdded = true;
-                    }
-                }
-                else
-                {
-                    Debug.LogError("Not allowed!");
-                    return false;
                 }
             }
-
-            return true;
+            if(AllPlayersJoined)
+            {
+                allPlayersAdded = true;
+            }
         }
     }
 }
