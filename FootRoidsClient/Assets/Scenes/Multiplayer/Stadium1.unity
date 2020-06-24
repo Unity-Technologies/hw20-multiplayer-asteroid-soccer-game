@@ -1063,8 +1063,11 @@ MonoBehaviour:
   isMaster: 0
   maxAsteroids: 0
   asteroid: {fileID: 0}
-  m_TempOtherShip: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
+  m_TempOtherShip: {fileID: 304458594359201552, guid: 32e4e1ddc1cb2744cb79c14879a78a73,
     type: 3}
+  playerList: []
+  playerObjectPrefab: {fileID: 0}
+  numOfPlayers: 0
 --- !u!4 &2011245767
 Transform:
   m_ObjectHideFlags: 0
