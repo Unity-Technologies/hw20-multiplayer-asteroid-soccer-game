@@ -180,7 +180,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.67290044
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -203,10 +203,10 @@ MonoBehaviour:
   rb: {fileID: 304458594359201566}
   sr: {fileID: 304458594359201565}
   thrust: 10
-  turnThrust: 1000
+  turnThrust: 100
   deathSpeed: 6
-  mediumSpeed: 1
-  maxSpeed: 10
+  mediumSpeed: 50
+  maxSpeed: 100
   gameSceneController: {fileID: 0}
 --- !u!70 &304458594359201563
 CapsuleCollider2D:

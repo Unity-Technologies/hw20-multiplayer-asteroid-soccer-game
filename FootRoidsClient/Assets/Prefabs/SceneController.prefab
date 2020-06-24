@@ -47,6 +47,7 @@ MonoBehaviour:
   playerSpeed: 0
   screenBounds: {x: 0, y: 0, z: 0}
   isMaster: 0
+  asteroids: []
   maxAsteroids: 4
   asteroid: {fileID: 4077591513428862216, guid: 2dadb673d5fb14e88af5b98b28dd9fc5,
     type: 3}
@@ -54,6 +55,14 @@ MonoBehaviour:
   playerObjectPrefab: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
     type: 3}
   numOfPlayers: 1
+  balls: []
+  ballObjectPrefab: {fileID: 3349321676048958299, guid: 6f72350364a194ccbb465c9d68e02f36,
+    type: 3}
+  numOfBalls: 1
+  goals: []
+  goalObjectPrefab: {fileID: 6977995978601899823, guid: 2c51531c45ec2426d80bebcf85ebe83c,
+    type: 3}
+  numOfGoals: 2
 --- !u!114 &1110302104677220014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4caae8f8b20c94c75b82b1e79a3aca52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameHost: 207.254.17.33
+  gameHost: 35.188.32.254
   gamePort: 7350
   gameKey: defaultkey
   gameSceneController: {fileID: 0}

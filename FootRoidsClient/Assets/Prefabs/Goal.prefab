@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8223410069879692930}
   - component: {fileID: 540778305197726266}
+  - component: {fileID: 27722729}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GoalCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +48,18 @@ CapsuleCollider2D:
   m_Offset: {x: -1.5360489, y: -0.00000047683716}
   m_Size: {x: 0.24324036, y: 3.0227778}
   m_Direction: 0
+--- !u!114 &27722729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096690590938191086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6387b867224dcc84372553961cde9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6977995978601899823
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +78,7 @@ GameObject:
   - component: {fileID: 1493728562}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
