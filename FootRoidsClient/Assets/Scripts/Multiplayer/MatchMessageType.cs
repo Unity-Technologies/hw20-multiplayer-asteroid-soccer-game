@@ -54,6 +54,7 @@ namespace Multiplayer
 
         EmoteReceived,
         
-        PositionUpdate
+        PositionUpdated,
+        RotationUpdated
     }
 }

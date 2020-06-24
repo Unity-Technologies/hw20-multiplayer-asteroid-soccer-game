@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public float mediumSpeed;
     public float maxSpeed;
 
-    Vector3 m_PreviousPos = new Vector3();
+    Vector3 m_PreviousPosition;
+    Vector3 m_PreviousRotation;
     
     // Access the GameSceneController
     public GameSceneController gameSceneController;
@@ -30,7 +31,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         sr = GetComponentInParent<SpriteRenderer>();
 
-        m_PreviousPos = transform.position;
+        m_PreviousPosition = transform.position;
+        m_PreviousRotation = transform.eulerAngles;
     }
 
     // Update is called once per frame
@@ -44,17 +46,24 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         var pos = transform.position;
-        if (m_PreviousPos != pos)
+        if (m_PreviousPosition != pos)
         {
-            var matchId = MatchCommunicationManager.Instance.MatchId;
-            var opCode = MatchMessageType.PositionUpdate;
-            
+            var opCode = MatchMessageType.PositionUpdated;
             var newState = new MatchMessagePositionUpdated(pos.x, pos.y);
             MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
         }
 
-        m_PreviousPos = pos;
-        
+        m_PreviousPosition = pos;
+
+        var rot = transform.eulerAngles;
+        if (m_PreviousRotation != rot)
+        {
+            var opCode = MatchMessageType.RotationUpdated;
+            var newState = new MatchMessageRotationUpdated(rot.y);
+            MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+        }
+
+        m_PreviousRotation = rot;
         
         // Get input and apply thrust
         thrustInput = Input.GetAxis("Vertical");

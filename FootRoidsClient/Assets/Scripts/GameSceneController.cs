@@ -52,6 +52,7 @@ public class GameSceneController : MonoBehaviour
         SceneManager.MoveGameObjectToScene(m_TempOtherShipInstance, SceneManager.GetSceneByName("Stadium1"));
         
         MatchCommunicationManager.Instance.OnPositionUpdated += PositionUpdated;
+        MatchCommunicationManager.Instance.OnRotationUpdated += RotationUpdated;
     }
 
     // Update is called once per frame
@@ -99,5 +100,13 @@ public class GameSceneController : MonoBehaviour
     void PositionUpdated(Vector3 pos, int shipId)
     {
         m_TempOtherShipInstance.transform.position = pos;
+    }
+    
+    void RotationUpdated(float rot, int shipId)
+    {
+        var newRot = m_TempOtherShipInstance.transform.eulerAngles;
+        newRot.y = rot;
+        
+        m_TempOtherShipInstance.transform.eulerAngles = newRot;
     }
 }

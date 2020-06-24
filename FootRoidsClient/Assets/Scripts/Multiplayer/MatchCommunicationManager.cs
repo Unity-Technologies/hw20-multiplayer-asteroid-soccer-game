@@ -15,6 +15,7 @@ namespace Multiplayer
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
         public event Action<Vector3, int> OnPositionUpdated;
+        public event Action<float, int> OnRotationUpdated;
 
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
@@ -134,7 +135,7 @@ namespace Multiplayer
             Debug.Log("Implement me!!!");
         }
 
-            private void OnMatchPresence(IMatchPresenceEvent e)
+        private void OnMatchPresence(IMatchPresenceEvent e)
         {
             foreach(IUserPresence user in e.Joins)
             {
@@ -179,14 +180,24 @@ namespace Multiplayer
             {
                 case MatchMessageType.MatchEnded:
                     break;
-                case MatchMessageType.PositionUpdate:
+                case MatchMessageType.PositionUpdated:
                     
-                    var values = messageJson.FromJson<MatchMessagePositionUpdated>();
-                    var pos = new Vector3(values.posX, values.posY, 0.0f);
+                    var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
+                    var pos = new Vector3(positionValues.posX, positionValues.posY, 0.0f);
                     
                     UnityMainThreadDispatcher.Instance().Enqueue(() =>
                     {
                         OnPositionUpdated?.Invoke(pos, 0);
+                    });
+
+                    break;
+                case MatchMessageType.RotationUpdated:
+                    
+                    var rotationValues = messageJson.FromJson<MatchMessageRotationUpdated>();
+                    
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        OnRotationUpdated?.Invoke(rotationValues.rot, 0);
                     });
 
                     break;
