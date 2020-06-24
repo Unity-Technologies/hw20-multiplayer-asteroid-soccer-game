@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Multiplayer;
+using Nakama;
+using Nakama.TinyJson;
 using UnityEngine;
 
 public class GameSceneController : MonoBehaviour
@@ -21,6 +24,10 @@ public class GameSceneController : MonoBehaviour
     private int totalPoints;
     private HUDController hUDController;
     private PlayerController player;
+    
+    //temp
+    [SerializeField] GameObject m_TempOtherShip;
+    GameObject m_TempOtherShipInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +37,10 @@ public class GameSceneController : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
 
         StartCoroutine(SpawnAsteroids());
+        
+        ServerSessionManager.Instance.Socket.ReceivedMatchState += OnReceivedMatchState;
+
+        m_TempOtherShipInstance = Instantiate(m_TempOtherShip, Vector3.zero, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -57,5 +68,24 @@ public class GameSceneController : MonoBehaviour
         Vector3 screenVector = new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z);
 
         return mainCamera.ScreenToWorldPoint(screenVector);
+    }
+
+    void OnReceivedMatchState(IMatchState newState)
+    {
+        var enc = System.Text.Encoding.UTF8;
+        var content = enc.GetString(newState.State);
+        switch (newState.OpCode)
+        {
+            case 341:
+                var values = content.FromJson<Dictionary<string, Vector2>>();
+
+                m_TempOtherShipInstance.transform.position = values["position"]; 
+                
+                break;
+
+            default:
+                Debug.LogFormat("User '{0}'' sent '{1}'", newState.UserPresence.Username, content);
+                break;
+        }
     }
 }

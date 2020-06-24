@@ -1,6 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Multiplayer;
+using Nakama.TinyJson;
 using UnityEngine;
+using UnityEngine.XR.WSA;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float deathSpeed;
     public float mediumSpeed;
 
+    Vector3 m_PreviousPos = new Vector3();
+    
     // Access the GameSceneController
     public GameSceneController gameSceneController;
 
@@ -23,6 +27,8 @@ public class PlayerController : MonoBehaviour
     {
         gameSceneController = FindObjectOfType<GameSceneController>();
         rb = GetComponentInParent<Rigidbody2D>();
+
+        m_PreviousPos = transform.position;
     }
 
     // Update is called once per frame
@@ -33,10 +39,27 @@ public class PlayerController : MonoBehaviour
     }
 
     // Fixed timing update
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
+        var pos = transform.position;
+        if (m_PreviousPos != pos)
+        {
+            var matchId = MatchCommunicationManager.Instance.MatchId;
+            var opCode = 341;
+            
+            var vec2Pos = new Vector2(pos.x, pos.y);
+            var newState = new Dictionary<string, Vector2> {{"position", vec2Pos}}.ToJson();
+            ServerSessionManager.Instance.Socket.SendMatchStateAsync(matchId, opCode, newState);
+        }
+
+        m_PreviousPos = pos;
+        
+        
         // Get input and apply thrust
         thrustInput = Input.GetAxis("Vertical");
         rb.AddRelativeForce(Vector2.up * thrustInput);
+        
+        
         //rb.AddTorque(-turnInput * turnThrust);
     }
 

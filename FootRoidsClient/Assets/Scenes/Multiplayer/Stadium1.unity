@@ -1060,11 +1060,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 0
   screenBounds: {x: 0, y: 0, z: 0}
-  screenTop: 8
-  screenBottom: -8
-  screenRight: 10
-  screenLeft: -10
   isMaster: 0
+  maxAsteroids: 0
+  asteroid: {fileID: 0}
+  m_TempOtherShip: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
+    type: 3}
 --- !u!4 &2011245767
 Transform:
   m_ObjectHideFlags: 0
