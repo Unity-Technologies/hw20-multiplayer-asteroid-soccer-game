@@ -47,10 +47,10 @@ public class PlayerController : MonoBehaviour
         if (m_PreviousPos != pos)
         {
             var matchId = MatchCommunicationManager.Instance.MatchId;
-            var opCode = (int)MatchMessageType.PositionUpdate;
+            var opCode = MatchMessageType.PositionUpdate;
             
-            var newState = new Dictionary<string, float> {{"x", pos.x}, {"y", pos.y}}.ToJson();
-            ServerSessionManager.Instance.Socket.SendMatchStateAsync(matchId, opCode, newState);
+            var newState = new MatchMessagePositionUpdated(pos.x, pos.y);
+            MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
         }
 
         m_PreviousPos = pos;

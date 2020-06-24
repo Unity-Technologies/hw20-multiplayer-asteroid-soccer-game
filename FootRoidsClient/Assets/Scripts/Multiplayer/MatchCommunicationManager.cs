@@ -181,8 +181,8 @@ namespace Multiplayer
                     break;
                 case MatchMessageType.PositionUpdate:
                     
-                    var values = messageJson.FromJson<Dictionary<string, float>>();
-                    var pos = new Vector3(values["x"], values["y"], 0.0f);
+                    var values = messageJson.FromJson<MatchMessagePositionUpdated>();
+                    var pos = new Vector3(values.posX, values.posY, 0.0f);
                     
                     OnPositionUpdated?.Invoke(pos, 0);
                     
