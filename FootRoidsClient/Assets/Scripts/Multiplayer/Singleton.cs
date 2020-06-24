@@ -22,7 +22,6 @@ namespace Multiplayer {
     /// e.g. public class MyClassName : Singleton<MyClassName> {}
     /// </summary>
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
-        #region Variables
 
         /// <summary>
         /// Lock used to not allow simultaneous operations on this singleton by multiple sources.
