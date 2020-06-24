@@ -178,6 +178,8 @@ namespace Multiplayer
             {
                 case MatchMessageType.MatchEnded:
                     break;
+                case MatchMessageType.PositionUpdate:
+                    break;
                 default:
                     Debug.Log("Needs more implementation!");
                     break;

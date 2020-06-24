@@ -100,15 +100,10 @@ public class GameSceneController : MonoBehaviour
         switch (newState.OpCode)
         {
             case 341:
-                Debug.Log(content);
-                
-                var values = content.FromJson<Dictionary<string, Vector2>>();
-                
-                Debug.Log(values);
+                var values = content.FromJson<Dictionary<string, float>>();
+                var pos = new Vector3(values["x"], values["y"], 0.0f);
 
-                //var pos = new Vector3(values["x"], values["y"], 0.0f);
-
-                //m_TempOtherShipInstance.transform.position = pos;
+                m_TempOtherShipInstance.transform.position = pos;
                 
                 break;
 
