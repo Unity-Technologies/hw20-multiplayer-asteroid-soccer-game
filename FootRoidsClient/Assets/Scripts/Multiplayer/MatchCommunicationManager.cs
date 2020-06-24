@@ -14,6 +14,7 @@ namespace Multiplayer
     {
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
+        public event Action<MatchMessageAsteroidSpawned> OnAsteroidSpawned;
 
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
@@ -22,6 +23,8 @@ namespace Multiplayer
         {
             get
             {
+                Debug.LogError("UserID " + ServerSessionManager.Instance.Session.UserId);
+                Debug.LogError("Current Host ID: " + CurrentHostId);
                 return CurrentHostId == ServerSessionManager.Instance.Session.UserId;
             }
         }
@@ -71,6 +74,12 @@ namespace Multiplayer
         private void GameEnded(MatchMessageGameEnded obj)
         {
             _socket.ReceivedMatchPresence -= OnMatchPresence;
+        }
+
+        protected override void OnDestroy()
+        {
+            inboundMessages = new Queue<IncommingMessageState>();
+            OnGameEnded -= GameEnded;
         }
 
         public async void JoinMatchAsync(IMatchmakerMatched matched)
@@ -130,10 +139,16 @@ namespace Multiplayer
         public void SendMatchStateMessageSelf<T>(MatchMessageType opCode, T message)
             where T : MatchMessage<T>
         {
-            Debug.Log("Implement me!!!");
+            // TODO: add more cases
+            switch(opCode)
+            {
+                case MatchMessageType.AsteroidSpawned:
+                    OnAsteroidSpawned?.Invoke(message as MatchMessageAsteroidSpawned);
+                    break;
+            }
         }
 
-            private void OnMatchPresence(IMatchPresenceEvent e)
+        private void OnMatchPresence(IMatchPresenceEvent e)
         {
             foreach(IUserPresence user in e.Joins)
             {
@@ -178,6 +193,10 @@ namespace Multiplayer
             {
                 case MatchMessageType.MatchEnded:
                     break;
+                case MatchMessageType.AsteroidSpawned:
+                    MatchMessageAsteroidSpawned asteroidSpawned = MatchMessageAsteroidSpawned.Parse(messageJson);
+                    OnAsteroidSpawned?.Invoke(asteroidSpawned);
+                    break;
                 default:
                     Debug.Log("Needs more implementation!");
                     break;
@@ -202,6 +221,7 @@ namespace Multiplayer
             // Get the user id from session id
             IMatchmakerUser hostUser = matched.Users.First(x => x.Presence.SessionId == hostSessionId);
             CurrentHostId = hostUser.Presence.UserId;
+            Debug.Log("HOST ID: " + CurrentHostId);
         }
 
         private void AddConnectedPlayers(IMatch match)

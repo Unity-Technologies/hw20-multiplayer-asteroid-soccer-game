@@ -25,8 +25,6 @@ namespace Multiplayer
     /// </summary>
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        #region Variables
-
         /// <summary>
         /// Lock used to not allow simultaneous operations on this singleton by multiple sources.
         /// </summary>
@@ -36,10 +34,6 @@ namespace Multiplayer
         /// Reference to the singleton instance of type <see cref="T"/>.
         /// </summary>
         private static T _instance;
-
-        #endregion
-
-        #region Properties
 
         /// <summary>
         /// Returns the reference to the singleton instance of type <see cref="T"/>.
@@ -59,7 +53,6 @@ namespace Multiplayer
                         go.AddComponent<T>();
                         
                         _instance = go.GetComponent<T>();
-                        
                         DontDestroyOnLoad(go);
                     }
 
@@ -68,7 +61,13 @@ namespace Multiplayer
             }
         }
 
-        #endregion
+        protected virtual void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                _instance = null;
+            }
+        }
     }
 
 }
