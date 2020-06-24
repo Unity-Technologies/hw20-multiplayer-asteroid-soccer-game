@@ -100,11 +100,14 @@ public class GameSceneController : MonoBehaviour
         switch (newState.OpCode)
         {
             case 341:
-                var values = content.FromJson<Dictionary<string, float>>();
-                var pos = new Vector3(values["x"], values["y"], 0.0f);
+                UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                {
+                    var values = content.FromJson<Dictionary<string, float>>();
+                    var pos = new Vector3(values["x"], values["y"], 0.0f);
 
-                m_TempOtherShipInstance.transform.position = pos;
-                
+                    m_TempOtherShipInstance.transform.position = pos;
+                });
+
                 break;
 
             default:
