@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using Multiplayer;
 using UnityEngine;
 using Nakama;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -97,7 +99,7 @@ public class MainMenu : MonoBehaviour
     string getDeviceId() {
 
         // Uncomment this for testing
-        // return System.Guid.NewGuid().ToString();
+        return System.Guid.NewGuid().ToString();
 
         var deviceId = PlayerPrefs.GetString("nakama.deviceid");
         if (string.IsNullOrEmpty(deviceId))
@@ -125,5 +127,16 @@ public class MainMenu : MonoBehaviour
     void OnMatchStart() {
         MatchMaker.Instance.UnsubscribeFromPlayerJoinedEvent(OnPlayerJoinedMatch);
         MatchMaker.Instance.UnsubscribeFromMatchStartEvent(OnMatchStart);
+        
+        gameObject.SetActive(true);
+        StartCoroutine(LoadStadium());
+    }
+    
+    IEnumerator LoadStadium() {
+        var asyncLoad = SceneManager.LoadSceneAsync("Stadium", LoadSceneMode.Additive);
+        while (!asyncLoad.isDone) {
+            yield return null;
+        }
+        SceneManager.UnloadSceneAsync("MainMenu");
     }
 }
