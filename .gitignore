@@ -153,7 +153,6 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.idea
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -281,6 +280,7 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
+*.meta
 *.iobj
 *.ipdb
 *.pgc
