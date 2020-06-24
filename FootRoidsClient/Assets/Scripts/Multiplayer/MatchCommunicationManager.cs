@@ -184,8 +184,11 @@ namespace Multiplayer
                     var values = messageJson.FromJson<MatchMessagePositionUpdated>();
                     var pos = new Vector3(values.posX, values.posY, 0.0f);
                     
-                    OnPositionUpdated?.Invoke(pos, 0);
-                    
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        OnPositionUpdated?.Invoke(pos, 0);
+                    });
+
                     break;
                 default:
                     Debug.Log("Needs more implementation!");

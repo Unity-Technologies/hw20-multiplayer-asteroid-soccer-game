@@ -4,6 +4,7 @@ using Multiplayer;
 using Nakama;
 using Nakama.TinyJson;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneController : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class GameSceneController : MonoBehaviour
         StartCoroutine(SpawnPlayers());
 
         m_TempOtherShipInstance = Instantiate(m_TempOtherShip, Vector3.zero, Quaternion.identity);
+        m_TempOtherShipInstance.name = "OtherPlayer";
+        SceneManager.MoveGameObjectToScene(m_TempOtherShipInstance, SceneManager.GetSceneByName("Stadium1"));
         
         MatchCommunicationManager.Instance.OnPositionUpdated += PositionUpdated;
     }
