@@ -14,6 +14,7 @@ namespace Multiplayer
     {
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
+        public event Action<Vector3, int> OnPositionUpdated;
 
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
@@ -179,6 +180,12 @@ namespace Multiplayer
                 case MatchMessageType.MatchEnded:
                     break;
                 case MatchMessageType.PositionUpdate:
+                    
+                    var values = messageJson.FromJson<Dictionary<string, float>>();
+                    var pos = new Vector3(values["x"], values["y"], 0.0f);
+                    
+                    OnPositionUpdated?.Invoke(pos, 0);
+                    
                     break;
                 default:
                     Debug.Log("Needs more implementation!");

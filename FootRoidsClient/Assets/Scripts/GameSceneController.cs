@@ -45,10 +45,10 @@ public class GameSceneController : MonoBehaviour
         StartCoroutine(SpawnAsteroids());
         numOfPlayers = 1;
         StartCoroutine(SpawnPlayers());
-        
-        ServerSessionManager.Instance.Socket.ReceivedMatchState += OnReceivedMatchState;
 
         m_TempOtherShipInstance = Instantiate(m_TempOtherShip, Vector3.zero, Quaternion.identity);
+        
+        MatchCommunicationManager.Instance.OnPositionUpdated += PositionUpdated;
     }
 
     // Update is called once per frame
@@ -93,26 +93,8 @@ public class GameSceneController : MonoBehaviour
         return mainCamera.ScreenToWorldPoint(screenVector);
     }
 
-    void OnReceivedMatchState(IMatchState newState)
+    void PositionUpdated(Vector3 pos, int shipId)
     {
-        var enc = System.Text.Encoding.UTF8;
-        var content = enc.GetString(newState.State);
-        switch (newState.OpCode)
-        {
-            case 341:
-                UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                {
-                    var values = content.FromJson<Dictionary<string, float>>();
-                    var pos = new Vector3(values["x"], values["y"], 0.0f);
-
-                    m_TempOtherShipInstance.transform.position = pos;
-                });
-
-                break;
-
-            default:
-                Debug.LogFormat("User '{0}'' sent '{1}'", newState.UserPresence.Username, content);
-                break;
-        }
+        m_TempOtherShipInstance.transform.position = pos;
     }
 }

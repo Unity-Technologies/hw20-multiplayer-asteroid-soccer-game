@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (m_PreviousPos != pos)
         {
             var matchId = MatchCommunicationManager.Instance.MatchId;
-            var opCode = 341;
+            var opCode = (int)MatchMessageType.PositionUpdate;
             
             var newState = new Dictionary<string, float> {{"x", pos.x}, {"y", pos.y}}.ToJson();
             ServerSessionManager.Instance.Socket.SendMatchStateAsync(matchId, opCode, newState);
