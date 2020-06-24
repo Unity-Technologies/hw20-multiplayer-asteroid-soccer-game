@@ -22,7 +22,7 @@ namespace Multiplayer
         {
             Debug.Log("Populating Game Elements");
 
-            if(MatchCommunicationManager.Instance.IsHost == false)
+            if( GameManager.Instance.IsHost == false)
             {
                 Debug.LogError("NOT HOST");
                 // only the host creates game elements
