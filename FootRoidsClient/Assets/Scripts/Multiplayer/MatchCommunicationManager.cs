@@ -12,7 +12,7 @@ namespace Multiplayer
 {
     public class MatchCommunicationManager : Singleton<MatchCommunicationManager>
     {
-        [SerializeField] private int _playerCount = 2;
+        [SerializeField] private int _playerCount = 1;
 
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
@@ -78,7 +78,6 @@ namespace Multiplayer
 
         public async void JoinMatchAsync(IMatchmakerMatched matched)
         {
-            Debug.Log("HERE");
             ChooseHost(matched);
 
             Players = new List<IUserPresence>();
@@ -96,8 +95,13 @@ namespace Multiplayer
                 MatchId = match.Id;
                 Debug.Log("Joined match with id: " + match.Id + "; presences count: " + match.Presences.Count());
 
-                // TODO: deal with duplicate users (probably not in scope for this)
-                StartGame();
+
+                bool playersJoin = AddConnectedPlayers(match);
+                if(playersJoin)
+                {
+                    matchJoined = true;
+                    StartGame();
+                }
             }
             catch (Exception e)
             {
@@ -123,6 +127,10 @@ namespace Multiplayer
                         allPlayersAdded = true;
                         StartGame();
                     }
+                }
+                else
+                {
+                    Debug.Log("Already found this player");
                 }
             }
         }
@@ -175,6 +183,33 @@ namespace Multiplayer
             // Get the user id from session id
             IMatchmakerUser hostUser = matched.Users.First(x => x.Presence.SessionId == hostSessionId);
             CurrentHostId = hostUser.Presence.UserId;
+        }
+
+        private bool AddConnectedPlayers(IMatch match)
+        {
+            foreach(IUserPresence user in match.Presences)
+            {
+                if(Players.FindIndex(x => x.UserId == user.UserId) == -1)
+                {
+                    Debug.Log("User +" + user.Username + " joined match");
+
+                    Players.Add(user);
+
+                    // TODO: need to set opponent id?
+
+                    if(AllPlayersJoined == true)
+                    {
+                        allPlayersAdded = true;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Not allowed!");
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

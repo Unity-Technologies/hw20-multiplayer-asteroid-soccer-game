@@ -211,6 +211,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.data[2].email
+      value: four@four.four
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.data[2].password
+      value: fourfour
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.data[3].email
+      value: four@four.four
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.data[3].password
+      value: fourfour
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.data[1].email
+      value: four@four.four
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_Users.Array.data[1].password
+      value: fourfour
+      objectReference: {fileID: 0}
     - target: {fileID: 8579451657641387261, guid: f6820ab1e68494ee6ab947b3f14bcd57,
         type: 3}
       propertyPath: m_Name
@@ -271,7 +306,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8579451657641387260, guid: f6820ab1e68494ee6ab947b3f14bcd57, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f6820ab1e68494ee6ab947b3f14bcd57, type: 3}
 --- !u!1001 &1501938911
 PrefabInstance:

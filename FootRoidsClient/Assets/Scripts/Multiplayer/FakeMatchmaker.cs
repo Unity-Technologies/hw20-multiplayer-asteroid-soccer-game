@@ -98,20 +98,6 @@ namespace FootRoids
                 var newState = new Dictionary<string, string> {{"hello", "world"}}.ToJson();
                 socket.SendMatchStateAsync(m_Match.Id, 1, newState);
             }
-        }
-
-        private IEnumerator LoadGame(IMatchmakerMatched matched)
-        {
-            AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MatchScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("FakeMatchmaker");
-            MatchCommunicationManager.Instance.JoinMatchAsync(matched);
-        }
-
+        }        
     }
 }
