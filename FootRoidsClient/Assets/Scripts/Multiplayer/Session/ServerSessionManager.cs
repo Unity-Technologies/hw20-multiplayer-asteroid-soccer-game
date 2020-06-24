@@ -32,7 +32,17 @@ namespace Multiplayer
         /// To initialize the session, call <see cref="AuthenticateDeviceIdAsync"/> or <see cref="AuthenticateFacebookAsync"/> methods.
         /// To reinitialize expired session, call <see cref="Reauthenticate"/> method.
         /// </summary>
-        public ISession Session { get; set; }
+        private ISession _session;
+        public ISession Session {
+            get { return _session; }
+            set {
+                if (_session != null) {
+                    Debug.LogWarning("Starting Multiple Sessions on same Device!");
+                }
+                _session = value;
+                Socket.ConnectAsync(_session);
+            } 
+        }
         
         /// <summary>
         /// Contains all the identifying data of a <see cref="Client"/>, like User Id, linked Device IDs,
