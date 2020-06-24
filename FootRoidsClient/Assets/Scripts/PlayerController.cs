@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         if (m_PreviousRotation != rot)
         {
             var opCode = MatchMessageType.RotationUpdated;
-            var newState = new MatchMessageRotationUpdated(rot.y);
+            var newState = new MatchMessageRotationUpdated(rot.z);
             MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
         }
 

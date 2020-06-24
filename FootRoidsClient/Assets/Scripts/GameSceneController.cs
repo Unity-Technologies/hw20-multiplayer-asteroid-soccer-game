@@ -105,7 +105,7 @@ public class GameSceneController : MonoBehaviour
     void RotationUpdated(float rot, int shipId)
     {
         var newRot = m_TempOtherShipInstance.transform.eulerAngles;
-        newRot.y = rot;
+        newRot.z = rot;
         
         m_TempOtherShipInstance.transform.eulerAngles = newRot;
     }
