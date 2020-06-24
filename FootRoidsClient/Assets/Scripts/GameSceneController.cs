@@ -34,10 +34,10 @@ public class GameSceneController : MonoBehaviour
         hUDController = FindObjectOfType<HUDController>();
         screenBounds = GetScreenBounds();
         player = FindObjectOfType<PlayerController>();
-        playerObjectPrefab = (GameObject)Resources.Load("prefabs/ship", typeof(GameObject));
+        playerObjectPrefab = Resources.Load<GameObject>("ship");
         StartCoroutine(SpawnAsteroids());
         numOfPlayers = 1;
-        //StartCoroutine(SpawnPlayers());
+        StartCoroutine(SpawnPlayers());
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class GameSceneController : MonoBehaviour
     }
 
     // Spawn Players in sides of the field ##Needs Fixing
-    /*private IEnumerator SpawnPlayers()
+    private IEnumerator SpawnPlayers()
 
     {
         
@@ -67,17 +67,11 @@ public class GameSceneController : MonoBehaviour
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
             // instantiate a player
-            var newPlayerObj = Instantiate(playerObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-            // set the players GameSceneController
-            GameObject obj1 = GameObject.Find("SceneController");
-            if (obj1 != null)
-            {
-                newPlayerObj.GetComponent<AsteroidScript>().gameSceneController = obj1.GetComponent<GameSceneController>();
-            }
+            Instantiate(playerObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);                
             yield return true;
         };
     }
-    */
+    
 
     // Get the screen bounds
     private Vector3 GetScreenBounds()
