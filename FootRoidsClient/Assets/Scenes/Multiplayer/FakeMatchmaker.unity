@@ -246,6 +246,11 @@ PrefabInstance:
       propertyPath: m_Users.Array.data[1].password
       value: fourfour
       objectReference: {fileID: 0}
+    - target: {fileID: 8193837056937481125, guid: f6820ab1e68494ee6ab947b3f14bcd57,
+        type: 3}
+      propertyPath: m_email
+      value: two@one.com
+      objectReference: {fileID: 0}
     - target: {fileID: 8579451657641387261, guid: f6820ab1e68494ee6ab947b3f14bcd57,
         type: 3}
       propertyPath: m_Name
