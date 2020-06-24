@@ -6,14 +6,27 @@ using UnityEngine;
 
 public class NakamaClient : MonoBehaviour
 {
+    public string gameHost;
+    public int gamePort;
+    public string gameKey;
+
+    // Access the GameSceneController
+    public GameSceneController gameSceneController;
+
     private const string RoomName = "FootRoDa";
-    private readonly IClient client = new Client("http", "127.0.0.1", 7350, "defaultkey");
+    private readonly IClient client;
 
     private ISocket socket;
 
     // Start is called before the first frame update
     async void Start()
     {
+        // Access the gameSceneController
+        gameSceneController = FindObjectOfType<GameSceneController>();
+
+        // Create the client
+        var client = new Client("http", gameHost, gamePort, gameKey);
+
         const string email = "hello@example.com";
         const string password = "verysecure";        
         var session = await client.AuthenticateEmailAsync(email, password);
@@ -41,6 +54,9 @@ public class NakamaClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Check for updates from the game server
+        // Issue object position updates if gameSceneController.isMaster is true
+        // Check for position updates
+        // Push those changes to gameScenceController
     }
 }
