@@ -60,10 +60,6 @@ public class GameSceneController : MonoBehaviour
         StartCoroutine(SpawnBalls());
         StartCoroutine(SpawnGoals());
 
-        m_TempOtherShipInstance = Instantiate(m_TempOtherShip, Vector3.zero, Quaternion.identity);
-        m_TempOtherShipInstance.name = "OtherPlayer";
-        SceneManager.MoveGameObjectToScene(m_TempOtherShipInstance, SceneManager.GetSceneByName("Stadium1"));
-        
         MatchCommunicationManager.Instance.OnPositionUpdated += PositionUpdated;
         MatchCommunicationManager.Instance.OnRotationUpdated += RotationUpdated;
     }
@@ -144,14 +140,14 @@ public class GameSceneController : MonoBehaviour
 
     void PositionUpdated(Vector3 pos, int shipId)
     {
-        m_TempOtherShipInstance.transform.position = pos;
+        //m_TempOtherShipInstance.transform.position = pos;
     }
     
     void RotationUpdated(float rot, int shipId)
     {
-        var newRot = m_TempOtherShipInstance.transform.eulerAngles;
-        newRot.z = rot;
+        //var newRot = m_TempOtherShipInstance.transform.eulerAngles;
+        //newRot.z = rot;
         
-        m_TempOtherShipInstance.transform.eulerAngles = newRot;
+        //m_TempOtherShipInstance.transform.eulerAngles = newRot;
     }
 }
