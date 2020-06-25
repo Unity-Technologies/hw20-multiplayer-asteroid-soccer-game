@@ -286,21 +286,6 @@
     <Reference Include="Nakama">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Assets/Nakama/Plugins/Nakama.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Advertisements">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/PackageCache/com.unity.ads@3.4.5/Editor/UnityEditor.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Editor">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Purchasing">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
@@ -667,17 +652,8 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Monetization">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -688,41 +664,17 @@
     <Reference Include="Unity.Timeline">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>/Users/jennifert/Documents/Games/FootroidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
