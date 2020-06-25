@@ -96,12 +96,11 @@ public class MatchMaker : Singleton<MatchMaker> {
     {
         if(IsHost)
         {
-            Debug.Log("COUNTING UP " + count);
             count++;
             if(count == _pendingMatch.Users.Count())
             {
                 // TODO: make more robust by checking userid
-                Debug.LogError("YAYAYA " + count);
+                Debug.LogError("In MainScene " + count);
                 UnityMainThreadDispatcher.Instance().Enqueue(() => {
                     FindObjectOfType<GameSceneController>().InitializeGame(); // hax
                 });

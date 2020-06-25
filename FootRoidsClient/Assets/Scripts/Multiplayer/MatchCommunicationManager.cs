@@ -26,10 +26,15 @@ namespace Multiplayer
             OnStadiumEntered -= stadiumEnteredHandler;
         }
 
+        // TODO (matt): We probably don't need these
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
+        // end
+
         public event Action<MatchMessageSpawnElement> OnAsteroidSpawned;
         public event Action<MatchMessageSpawnElement> OnPlayerSpawned;
+        public event Action<MatchMessageSpawnElement> OnBallSpawned;
+        public event Action<MatchMessageSpawnElement> OnGoalSpawned;
 
 
         public event Action<Vector3, int> OnPositionUpdated;
@@ -126,6 +131,12 @@ namespace Multiplayer
                 case MatchMessageType.PlayerSpawned:
                     OnPlayerSpawned?.Invoke(message as MatchMessageSpawnElement);
                     break;
+                case MatchMessageType.BallSpawned:
+                    OnBallSpawned?.Invoke(message as MatchMessageSpawnElement);
+                    break;
+                case MatchMessageType.GoalSpawned:
+                    OnGoalSpawned?.Invoke(message as MatchMessageSpawnElement);
+                    break;
                 case MatchMessageType.StadiumEntered:
                     OnStadiumEntered?.Invoke();
                     break;
@@ -186,6 +197,14 @@ namespace Multiplayer
                 case MatchMessageType.PlayerSpawned:
                     MatchMessageSpawnElement playerSpawn = MatchMessageSpawnElement.Parse(messageJson);
                     OnPlayerSpawned?.Invoke(playerSpawn);
+                    break;
+                case MatchMessageType.BallSpawned:
+                    MatchMessageSpawnElement ballSpawn = MatchMessageSpawnElement.Parse(messageJson);
+                    OnBallSpawned?.Invoke(ballSpawn);
+                    break;
+                case MatchMessageType.GoalSpawned:
+                    MatchMessageSpawnElement goalSpawn = MatchMessageSpawnElement.Parse(messageJson);
+                    OnGoalSpawned?.Invoke(goalSpawn);
                     break;
                 case MatchMessageType.PositionUpdated:
                     

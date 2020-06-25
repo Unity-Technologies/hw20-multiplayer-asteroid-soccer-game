@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour {
 
     public void InitializeGame() {       
         
-        GameSceneController.Instance.PopulateGameElements();
+        //GameSceneController.Instance.PopulateGameElements();
     }
 }
