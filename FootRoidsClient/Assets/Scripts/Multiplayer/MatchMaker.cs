@@ -49,6 +49,15 @@ public class MatchMaker : Singleton<MatchMaker> {
         OnMatchStart -= matchStartHandler;
     }
 
+    public IMatchmakerMatched GetMatched() {
+        return Instance._pendingMatch;
+    }
+
+    public string GetMatchId()
+    {
+        return Instance._joinedMatch.Id;
+    }
+
     public async void StartMatchmaking(string query) {
         ServerSessionManager.Instance.Socket.ReceivedMatchmakerMatched += OnMatchMakerMatched;
         _readyPlayers = new List<IUserPresence>();

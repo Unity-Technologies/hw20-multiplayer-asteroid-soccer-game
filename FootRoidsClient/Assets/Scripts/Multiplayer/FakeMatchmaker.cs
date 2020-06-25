@@ -45,7 +45,7 @@ namespace FootRoids
             }
          
             SceneManager.UnloadSceneAsync("FakeMatchmaker");
-            MatchCommunicationManager.Instance.JoinMatchAsync(matched);
+            //MatchCommunicationManager.Instance.JoinMatchAsync(matched);
         }
 
         private IEnumerator LoadGame(IMatchmakerMatched matched)
@@ -58,7 +58,7 @@ namespace FootRoids
             }
 
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("FakeMatchmaker");
-            MatchCommunicationManager.Instance.JoinMatchAsync(matched);
+            //MatchCommunicationManager.Instance.JoinMatchAsync(matched);
         }
     }
 }
