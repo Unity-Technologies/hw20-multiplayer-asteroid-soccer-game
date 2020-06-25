@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 23eca82913302412780cd69c6b784573
   - enabled: 1
-    path: Assets/Scenes/Multiplayer/Stadium.unity
-    guid: 17c2b5f5fb3cd483196c8fd27e631051
+    path: Assets/Scenes/MainGame.unity
+    guid: 3ac316cf0f8d34580a967874b9fc84dd
   m_configObjects: {}

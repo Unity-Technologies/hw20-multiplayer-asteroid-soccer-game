@@ -133,7 +133,7 @@ public class MainMenu : MonoBehaviour
     }
     
     IEnumerator LoadStadium() {
-        var asyncLoad = SceneManager.LoadSceneAsync("Stadium", LoadSceneMode.Additive);
+        var asyncLoad = SceneManager.LoadSceneAsync("MainGame", LoadSceneMode.Additive);
         while (!asyncLoad.isDone) {
             yield return null;
         }
