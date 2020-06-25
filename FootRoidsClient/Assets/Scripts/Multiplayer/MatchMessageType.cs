@@ -23,36 +23,12 @@ namespace Multiplayer
     public enum MatchMessageType
     {
         StadiumEntered,
-        MatchStarted,
 
         MatchEnded,
 
-        MatchReward,
-
-        ActionPointsAdded,
-
         AsteroidSpawned,
 
-        UnitSpawned,
-
-        UnitMoved,
-
-        UnitAttacked,
-
-        SpellActivated,
-
-        StartingHand,
-
-        CardPlayRequest,
-
-        CardPlayed,
-
-        CardCanceled,
-
-        CardPlayDenial,
-
-        EmoteSendRequest,
-
-        EmoteReceived,
+        PositionUpdated,
+        RotationUpdated
     }
 }

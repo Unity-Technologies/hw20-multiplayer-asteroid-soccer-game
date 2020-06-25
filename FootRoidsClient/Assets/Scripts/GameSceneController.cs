@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Multiplayer;
+using Nakama;
+using Nakama.TinyJson;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneController : MonoBehaviour
 {
@@ -55,6 +59,9 @@ public class GameSceneController : MonoBehaviour
         StartCoroutine(SpawnPlayers());
         StartCoroutine(SpawnBalls());
         StartCoroutine(SpawnGoals());
+
+        MatchCommunicationManager.Instance.OnPositionUpdated += PositionUpdated;
+        MatchCommunicationManager.Instance.OnRotationUpdated += RotationUpdated;
     }
 
     // Update is called once per frame
@@ -130,5 +137,18 @@ public class GameSceneController : MonoBehaviour
         Vector3 screenVector = new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z);
 
         return mainCamera.ScreenToWorldPoint(screenVector);
+    }
+
+    void PositionUpdated(Vector3 pos, int shipId)
+    {
+        //m_TempOtherShipInstance.transform.position = pos;
+    }
+    
+    void RotationUpdated(float rot, int shipId)
+    {
+        //var newRot = m_TempOtherShipInstance.transform.eulerAngles;
+        //newRot.z = rot;
+        
+        //m_TempOtherShipInstance.transform.eulerAngles = newRot;
     }
 }

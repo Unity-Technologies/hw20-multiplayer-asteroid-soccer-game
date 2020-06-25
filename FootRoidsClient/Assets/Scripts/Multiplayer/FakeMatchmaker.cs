@@ -15,7 +15,8 @@ namespace FootRoids
         IMatch m_Match;
         [SerializeField] private string m_email = "one@one.com";
 
-        async void Start() {
+        async void Start()
+        {
             var client = ServerSessionManager.Instance.Client;
             ServerSessionManager.Instance.Session = await client.AuthenticateEmailAsync(m_email, "password");
             ServerSessionManager.Instance.Socket.ReceivedMatchmakerMatched += MatchmakerMatched;
@@ -37,7 +38,7 @@ namespace FootRoids
         
         IEnumerator LoadStadium(IMatchmakerMatched matched)
         {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Stadium", LoadSceneMode.Additive);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Stadium1", LoadSceneMode.Additive);
          
             while (!asyncLoad.isDone)
             {
@@ -45,19 +46,6 @@ namespace FootRoids
             }
          
             SceneManager.UnloadSceneAsync("FakeMatchmaker");
-            //MatchCommunicationManager.Instance.JoinMatchAsync(matched);
-        }
-
-        private IEnumerator LoadGame(IMatchmakerMatched matched)
-        {
-            AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MatchScene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("FakeMatchmaker");
             //MatchCommunicationManager.Instance.JoinMatchAsync(matched);
         }
     }

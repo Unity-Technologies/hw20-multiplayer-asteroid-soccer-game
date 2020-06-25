@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Multiplayer;
+using Nakama.TinyJson;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.WSA;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public float mediumSpeed;
     public float maxSpeed;
 
+    Vector3 m_PreviousPosition;
+    Vector3 m_PreviousRotation;
+    
     // Access the GameSceneController
     public GameSceneController gameSceneController;
 
@@ -26,6 +31,9 @@ public class PlayerController : MonoBehaviour
         gameSceneController = FindObjectOfType<GameSceneController>();
         rb = GetComponentInParent<Rigidbody2D>();
         sr = GetComponentInParent<SpriteRenderer>();
+
+        m_PreviousPosition = transform.position;
+        m_PreviousRotation = transform.eulerAngles;
     }
 
     // Update is called once per frame
@@ -36,7 +44,28 @@ public class PlayerController : MonoBehaviour
     }
 
     // Fixed timing update
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
+        var pos = transform.position;
+        if (m_PreviousPosition != pos)
+        {
+            var opCode = MatchMessageType.PositionUpdated;
+            var newState = new MatchMessagePositionUpdated(pos.x, pos.y);
+            MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+        }
+
+        m_PreviousPosition = pos;
+
+        var rot = transform.eulerAngles;
+        if (m_PreviousRotation != rot)
+        {
+            var opCode = MatchMessageType.RotationUpdated;
+            var newState = new MatchMessageRotationUpdated(rot.z);
+            MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+        }
+
+        m_PreviousRotation = rot;
+        
         // Get input and apply thrust
         //thrustInput = Input.GetAxis("Vertical");
         rb.AddRelativeForce(Vector2.up * thrustInput * thrust);
