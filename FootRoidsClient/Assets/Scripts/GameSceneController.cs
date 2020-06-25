@@ -86,13 +86,17 @@ public class GameSceneController : MonoBehaviour
 
         for (int currentBalls = 0; currentBalls < numOfBalls; currentBalls++)
         {
-            float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
-            float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
-            // instantiate a ball
-            Instantiate(ballObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+            SpawnBall();
             yield return true;
         };
     }
+
+    public void SpawnBall() {
+        float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
+        float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
+        Instantiate(ballObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+    }
+
 
     // Get the screen bounds
     private Vector3 GetScreenBounds()

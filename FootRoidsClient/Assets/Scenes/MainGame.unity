@@ -132,6 +132,10 @@ PrefabInstance:
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 1650258346}
+    - target: {fileID: 27722729, guid: 2c51531c45ec2426d80bebcf85ebe83c, type: 3}
+      propertyPath: GameScene
+      value: 
+      objectReference: {fileID: 1821157085}
     - target: {fileID: 6977995978601899819, guid: 2c51531c45ec2426d80bebcf85ebe83c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,6 +463,10 @@ PrefabInstance:
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 821820777}
+    - target: {fileID: 27722729, guid: 2c51531c45ec2426d80bebcf85ebe83c, type: 3}
+      propertyPath: GameScene
+      value: 
+      objectReference: {fileID: 1821157085}
     - target: {fileID: 6977995978601899819, guid: 2c51531c45ec2426d80bebcf85ebe83c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -618,6 +626,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 788612908851801096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1821157085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+    type: 3}
+  m_PrefabInstance: {fileID: 830449248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53811b1fc3cf943aba4adf70514d7fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &788612908851801096
 PrefabInstance:
   m_ObjectHideFlags: 0

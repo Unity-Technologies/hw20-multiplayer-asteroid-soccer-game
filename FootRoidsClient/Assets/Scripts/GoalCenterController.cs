@@ -5,8 +5,8 @@ using UnityEngine;
 public class GoalCenterController : MonoBehaviour
 {
     public ScoreScript ScoreText;
+    public GameSceneController GameScene;
     private int goalScore = 0;
-
 
     void OnTriggerEnter2D(Collider2D collision)
     {   
@@ -15,17 +15,8 @@ public class GoalCenterController : MonoBehaviour
             goalScore = goalScore + 1;
             ScoreText.SetScore(goalScore);
             Destroy (collision.gameObject); // Destroy the colliding socccer ball
+            GameScene.SpawnBall();
         }
     }
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
