@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4caae8f8b20c94c75b82b1e79a3aca52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameHost: 35.188.32.254
+  gameHost: 34.69.157.238
   gamePort: 7350
   gameKey: defaultkey
   gameSceneController: {fileID: 2013320363570575852}
