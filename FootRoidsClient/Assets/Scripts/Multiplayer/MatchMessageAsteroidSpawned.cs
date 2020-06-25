@@ -7,12 +7,14 @@ namespace Multiplayer
     public class MatchMessageAsteroidSpawned : MatchMessage<MatchMessageAsteroidSpawned>
     {
         public readonly int ElementId;
-        public readonly Transform ElementTransform;
+        public readonly Vector3 ElementPosition;
+        public readonly Vector3 ElementDirection;
 
-        public MatchMessageAsteroidSpawned(Transform elementTransform, int elementId)
+        public MatchMessageAsteroidSpawned(Vector3 pos, Vector3 dir, int elementId)
         {
             ElementId = elementId;
-            ElementTransform = elementTransform;
+            ElementPosition = pos;
+            ElementDirection = dir;
         }
     }
 }

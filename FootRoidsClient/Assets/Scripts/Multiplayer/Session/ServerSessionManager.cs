@@ -7,7 +7,8 @@ namespace Multiplayer
 {
     public class ServerSessionManager : Singleton<ServerSessionManager>
     {
-        [SerializeField] string _serverAddress = "35.188.32.254";
+        [SerializeField] string _serverAddress = "207.254.17.33";
+//        [SerializeField] string _serverAddress = "127.0.0.1";
         [SerializeField] int _port = 7350;
         
         string _deviceId;
@@ -32,7 +33,17 @@ namespace Multiplayer
         /// To initialize the session, call <see cref="AuthenticateDeviceIdAsync"/> or <see cref="AuthenticateFacebookAsync"/> methods.
         /// To reinitialize expired session, call <see cref="Reauthenticate"/> method.
         /// </summary>
-        public ISession Session { get; set; }
+        private ISession _session;
+        public ISession Session {
+            get { return _session; }
+            set {
+                if (_session != null) {
+                    Debug.LogWarning("Starting Multiple Sessions on same Device!");
+                }
+                _session = value;
+                Socket.ConnectAsync(_session);
+            } 
+        }
         
         /// <summary>
         /// Contains all the identifying data of a <see cref="Client"/>, like User Id, linked Device IDs,

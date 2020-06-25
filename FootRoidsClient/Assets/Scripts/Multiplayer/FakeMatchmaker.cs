@@ -46,7 +46,7 @@ namespace FootRoids
             }
          
             SceneManager.UnloadSceneAsync("FakeMatchmaker");
-            MatchCommunicationManager.Instance.JoinMatchAsync(matched);
+            //MatchCommunicationManager.Instance.JoinMatchAsync(matched);
         }
     }
 }

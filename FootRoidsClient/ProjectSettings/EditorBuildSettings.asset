@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Multiplayer/FakeMatchmaker.unity
-    guid: 70483fecac1864378bdaa0bf427d8922
+    path: Assets/Scenes/Menus/MainMenu.unity
+    guid: 23eca82913302412780cd69c6b784573
   - enabled: 1
     path: Assets/Scenes/Multiplayer/Stadium1.unity
     guid: 1a8a20f058ad455438e7f8852b595426

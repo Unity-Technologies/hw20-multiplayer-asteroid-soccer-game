@@ -14,6 +14,7 @@ namespace Multiplayer
     {
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
+        public event Action<MatchMessageAsteroidSpawned> OnAsteroidSpawned;        
         public event Action<Vector3, int> OnPositionUpdated;
         public event Action<float, int> OnRotationUpdated;
 
@@ -48,14 +49,6 @@ namespace Multiplayer
 
         private void StartGame()
         {
-            if(GameStarted == true)
-            {
-                return;
-            }
-            if(allPlayersAdded == false)
-            {
-                return;
-            }
             GameStarted = true;
 
             UnityMainThreadDispatcher.Instance().Enqueue(() =>
@@ -75,38 +68,10 @@ namespace Multiplayer
             _socket.ReceivedMatchPresence -= OnMatchPresence;
         }
 
-        public async void JoinMatchAsync(IMatchmakerMatched matched)
+        protected override void OnDestroy()
         {
-            ChooseHost(matched);
-            playersInMatch = matched.Users.Count();
-            Players = new List<IUserPresence>();
-            try
-            {
-                // Listen to incoming match messages and user connection changes
-                _socket.ReceivedMatchPresence += OnMatchPresence;
-                _socket.ReceivedMatchState += ReceiveMatchStateMessage;
-
-                // Join the match
-                var match = await _socket.JoinMatchAsync(matched);
-                // Set current match id
-                // It will be used to leave the match later
-                MatchId = match.Id;
-
-                Debug.Log("Joined match with id: " + match.Id + "; presences count: " + match.Presences.Count());
-                foreach (var user in match.Presences) {
-                    Debug.Log("User: " + user.Username);
-                }
-
-                AddConnectedPlayers(match);
-                if(allPlayersAdded)
-                {
-                    StartGame();
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Couldn't join match: " + e.Message);
-            }
+            inboundMessages = new Queue<IncommingMessageState>();
+            OnGameEnded -= GameEnded;
         }
 
         // send messages to server
@@ -120,7 +85,7 @@ namespace Multiplayer
 
                 //Sending match state json along with opCode needed for unpacking message to server.
                 //Then server sends it to other players
-                _socket.SendMatchStateAsync(MatchId, (long)opCode, json);
+                _socket.SendMatchStateAsync(MatchMaker.Instance.GetMatchId(), (long)opCode, json);
             }
             catch (Exception e)
             {
@@ -132,7 +97,13 @@ namespace Multiplayer
         public void SendMatchStateMessageSelf<T>(MatchMessageType opCode, T message)
             where T : MatchMessage<T>
         {
-            Debug.Log("Implement me!!!");
+            // TODO: add more cases
+            switch(opCode)
+            {
+                case MatchMessageType.AsteroidSpawned:
+                    OnAsteroidSpawned?.Invoke(message as MatchMessageAsteroidSpawned);
+                    break;
+            }
         }
 
         private void OnMatchPresence(IMatchPresenceEvent e)
@@ -180,6 +151,9 @@ namespace Multiplayer
             {
                 case MatchMessageType.MatchEnded:
                     break;
+                case MatchMessageType.AsteroidSpawned:
+                    MatchMessageAsteroidSpawned asteroidSpawned = MatchMessageAsteroidSpawned.Parse(messageJson);
+                    OnAsteroidSpawned?.Invoke(asteroidSpawned);
                 case MatchMessageType.PositionUpdated:
                     
                     var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
@@ -205,43 +179,7 @@ namespace Multiplayer
                     Debug.Log("Needs more implementation!");
                     break;
             }
-        }
-
-        private void ChooseHost(IMatchmakerMatched matched)
-        {
-            // Add the session id of all users connected to the match
-            List<string> userSessionIds = new List<string>();
-            foreach (IMatchmakerUser user in matched.Users)
-            {
-                userSessionIds.Add(user.Presence.SessionId);
-            }
-
-            // Perform a lexicographical sort on list of user session ids
-            userSessionIds.Sort();
-
-            // First user from the sorted list will be the host of current match
-            string hostSessionId = userSessionIds.First();
-
-            // Get the user id from session id
-            IMatchmakerUser hostUser = matched.Users.First(x => x.Presence.SessionId == hostSessionId);
-            CurrentHostId = hostUser.Presence.UserId;
-        }
-
-        private void AddConnectedPlayers(IMatch match)
-        {
-            foreach(IUserPresence user in match.Presences)
-            {
-                if(Players.FindIndex(x => x.UserId == user.UserId) == -1)
-                {
-                    Debug.Log("User +" + user.Username + " joined match");
-                    Players.Add(user);
-                }
-            }
-            if(AllPlayersJoined)
-            {
-                allPlayersAdded = true;
-            }
-        }
+        }        
     }
 }
 
