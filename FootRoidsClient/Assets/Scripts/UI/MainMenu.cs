@@ -127,7 +127,7 @@ public class MainMenu : MonoBehaviour
     void OnMatchStart() {
         MatchMaker.Instance.UnsubscribeFromPlayerJoinedEvent(OnPlayerJoinedMatch);
         MatchMaker.Instance.UnsubscribeFromMatchStartEvent(OnMatchStart);
-        
+
         gameObject.SetActive(true);
         StartCoroutine(LoadStadium());
     }

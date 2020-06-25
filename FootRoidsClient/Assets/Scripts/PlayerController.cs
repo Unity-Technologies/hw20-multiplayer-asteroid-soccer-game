@@ -2,6 +2,7 @@
 using Multiplayer;
 using Nakama.TinyJson;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.WSA;
 
 public class PlayerController : MonoBehaviour
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
         m_PreviousRotation = rot;
         
         // Get input and apply thrust
-        thrustInput = Input.GetAxis("Vertical");
+        //thrustInput = Input.GetAxis("Vertical");
         rb.AddRelativeForce(Vector2.up * thrustInput * thrust);
         //rb.AddTorque(-turnInput * turnThrust);
         if (rb.velocity.magnitude > maxSpeed) {
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         // Get input and apply thrust
-        turnInput = Input.GetAxis("Horizontal");
+        //turnInput = Input.GetAxis("Horizontal");
 
         //rotate the ship 
         transform.Rotate(Vector3.forward * -turnInput * Time.deltaTime * turnThrust);
@@ -130,6 +131,34 @@ public class PlayerController : MonoBehaviour
         Debug.Log("relative hit: " + col.relativeVelocity.magnitude);
         if(col.relativeVelocity.magnitude > mediumSpeed) {
             Debug.Log("boom");
+        }
+    }
+
+    public void RotatePlayer(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            var rotationInput = callbackContext.action.ReadValue<Vector2>();
+
+            turnInput = rotationInput.x;
+        }
+        else if (callbackContext.canceled)
+        {
+            turnInput = 0.0f;
+        }
+    }
+
+    public void ThrustPlayer(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            var rotationInput = callbackContext.action.ReadValue<Vector2>();
+
+            thrustInput = rotationInput.y;
+        }
+        else if (callbackContext.canceled)
+        {
+            thrustInput = 0.0f;
         }
     }
 }
