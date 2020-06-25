@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Multiplayer/FakeMatchmaker.unity
     guid: 70483fecac1864378bdaa0bf427d8922
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Multiplayer/Stadium.unity
     guid: 17c2b5f5fb3cd483196c8fd27e631051
+  - enabled: 1
+    path: Assets/Scenes/Game/MainGame.unity
+    guid: 3ac316cf0f8d34580a967874b9fc84dd
+  - enabled: 1
+    path: Assets/Scenes/Menus/MenuScene.unity
+    guid: fb09690709223410480318a05f66cc07
   m_configObjects: {}

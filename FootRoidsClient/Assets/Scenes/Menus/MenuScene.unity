@@ -829,7 +829,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 05a31e95f922949c5a8bc887f4dd89eb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.511
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -955,6 +955,7 @@ MonoBehaviour:
   MatchmakingPanel: {fileID: 594409774}
   UsernameInputText: {fileID: 602025324}
   UsernameDisplayText: {fileID: 1036852637}
+  ChatroomText: {fileID: 0}
 --- !u!1 &1036852635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,7 +1840,7 @@ PrefabInstance:
     - target: {fileID: 4735380527640257641, guid: 9178d4545b143405e8f81dfbfbcd6d54,
         type: 3}
       propertyPath: m_Text
-      value: Main Menu
+      value: FOOTROIDS IN SPACE
       objectReference: {fileID: 0}
     - target: {fileID: 6897505732738848643, guid: 9178d4545b143405e8f81dfbfbcd6d54,
         type: 3}

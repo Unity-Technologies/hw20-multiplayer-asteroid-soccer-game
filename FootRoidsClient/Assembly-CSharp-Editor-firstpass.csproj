@@ -256,9 +256,6 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -266,25 +263,25 @@
       <HintPath>/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="GitHub.Logging">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.Logging.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.Logging.dll</HintPath>
     </Reference>
     <Reference Include="sfw.net">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Plugins/GitHub/Editor/sfw.net.dll</HintPath>
     </Reference>
     <Reference Include="GitHub.Unity.45">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll</HintPath>
     </Reference>
     <Reference Include="GitHub.UnityShim">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll</HintPath>
     </Reference>
     <Reference Include="GitHub.Api.45">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll</HintPath>
     </Reference>
     <Reference Include="Nakama">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Assets/Nakama/Plugins/Nakama.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Assets/Nakama/Plugins/Nakama.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -641,37 +638,37 @@
       <HintPath>/Applications/Unity/Hub/Editor/2019.4.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>/Users/toddc/Unity Projects/FootRoidsMP/FootRoidsClient/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
