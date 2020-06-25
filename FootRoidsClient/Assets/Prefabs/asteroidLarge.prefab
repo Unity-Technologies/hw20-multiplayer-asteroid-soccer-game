@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 770466968534933659}
   - component: {fileID: 50479710960651190}
   - component: {fileID: 1790798602208144042}
-  - component: {fileID: 5390838473899783491}
+  - component: {fileID: 6146161452657169525}
   m_Layer: 0
   m_Name: asteroidLarge
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8fae2a102b1e24b699e6d5bf0fcb2edd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5dabcc06355ad45a0a5bdc7f05e8fdc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,12 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxThrust: 100
   maxTorque: 100
-  screenTop: 12
-  screenBottom: -12
-  screenRight: 15
-  screenLeft: -15
+  gameSceneController: {fileID: 0}
   rb: {fileID: 50479710960651190}
---- !u!70 &5390838473899783491
+--- !u!70 &6146161452657169525
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,6 +134,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.82, y: 1.15}
+  m_Offset: {x: -0.008762833, y: 0.04089437}
+  m_Size: {x: 0.8639542, y: 0.72959584}
   m_Direction: 1
