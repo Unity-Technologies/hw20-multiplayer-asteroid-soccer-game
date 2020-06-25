@@ -14,6 +14,14 @@
             this.posY = posY;
             this.angle = angle;
         }
+        
+        public MatchMessagePositionUpdated(int id, float posX, float posY, float angle)
+        {
+            this.id = id;
+            this.posX = posX;
+            this.posY = posY;
+            this.angle = angle;
+        }
     }
 
 }

@@ -37,6 +37,8 @@ namespace Multiplayer
         public event Action<MatchMessageSpawnElement> OnGoalSpawned;
 
         public event Action<float, float, float, int> OnPlayerPositionUpdated;
+        public event Action<float, int> OnPlayerInputRotationUpdated;
+        public event Action<float, int> OnPlayerInputThrustUpdated;
 
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
@@ -205,6 +207,7 @@ namespace Multiplayer
                     OnGoalSpawned?.Invoke(goalSpawn);
                     break;
                 case MatchMessageType.PlayerPositionUpdated:
+                {
                     var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
 
                     var posX = positionValues.posX;
@@ -216,6 +219,33 @@ namespace Multiplayer
                     {
                         OnPlayerPositionUpdated?.Invoke(posX, posY, angle, id);
                     });
+                }
+                    break;
+                case MatchMessageType.PlayerInputRotationUpdated:
+                {
+                    var value = messageJson.FromJson<MatchMessageInputRotationUpdated>();
+
+                    var input = value.input;
+                    var id = value.id;
+                    
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        OnPlayerInputRotationUpdated?.Invoke(input, id);
+                    });
+                }
+                    break;
+                case MatchMessageType.PlayerInputThrustUpdated:
+                {
+                    var value = messageJson.FromJson<MatchMessageInputThrustUpdated>();
+
+                    var input = value.input;
+                    var id = value.id;
+                    
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        OnPlayerInputThrustUpdated?.Invoke(input, id);
+                    });
+                }
 
                     break;
                 default:
