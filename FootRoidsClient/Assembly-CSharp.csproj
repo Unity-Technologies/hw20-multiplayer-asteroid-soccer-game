@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\UI\Background\RandomSprite.cs" />
     <Compile Include="Assets\Scripts\UI\Background\RandomTorque.cs" />
     <Compile Include="Assets\Scripts\UI\Background\WrapScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\brettScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\brettScripts\MainThreadDispatcher.cs" />

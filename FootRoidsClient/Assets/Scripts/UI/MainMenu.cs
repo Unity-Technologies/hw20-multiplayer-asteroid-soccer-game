@@ -132,15 +132,10 @@ public class MainMenu : MonoBehaviour
             }
 
             // TODO: update some UI
-
             foreach (var presence in _match.Presences)
             {
                 Debug.Log("presence: " + presence.Username);
             }
-
-            // Transition to Game
-            SceneManager.LoadScene("MainGame");
-
 
         };
 
@@ -162,6 +157,9 @@ public class MainMenu : MonoBehaviour
         //await socket2.AddMatchmakerAsync("*", 2, 9);
         //await Task.Delay(TimeSpan.FromSeconds(120));
         //await socket2.CloseAsync();
+
+        // Transition to Game
+        SceneManager.LoadSceneAsync("MainGame");
     }
 
     private void OnApplicationQuit()

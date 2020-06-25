@@ -5,33 +5,27 @@ using UnityEngine.UI;
 
 public class Music : MonoBehaviour
 {
-	static Music instance = null;
+    void Awake()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
+        if (objs.Length > 1)
+            Destroy(this.gameObject);
 
-	private void Awake()
-	{
-		if (instance != null)
-		{
-			Destroy(gameObject);
-        }
-		else
-		{
-            // Allow audio to keep playing between scenes
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
+        DontDestroyOnLoad(this.gameObject);
+       
     }
 
-	public void ToggleSound()
-	{
-		if (PlayerPrefs.GetInt("Muted", 0) == 0)
-		{
+    public void ToggleSound()
+    {
+        if (PlayerPrefs.GetInt("Muted", 0) == 0)
+        {
             // Turn music on
-			PlayerPrefs.SetInt("Muted", 1);
-		}
-		else
-		{
-			// Turn music off
-			PlayerPrefs.SetInt("Muted", 0);
-		}
+            PlayerPrefs.SetInt("Muted", 1);
+        }
+        else
+        {
+            // Turn music off
+            PlayerPrefs.SetInt("Muted", 0);
+        }
     }
 }

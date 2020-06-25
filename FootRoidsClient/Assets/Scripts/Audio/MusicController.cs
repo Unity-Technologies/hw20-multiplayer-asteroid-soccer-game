@@ -10,6 +10,16 @@ public class MusicController : MonoBehaviour
     public Sprite musicOnSprite;
     public Sprite musicOffSprite;
 
+    void Awake()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("AudioButton");
+        if (objs.Length > 1)
+            Destroy(this.gameObject);
+        
+        DontDestroyOnLoad(this.gameObject);
+
+    }
+
     private void Start()
     {
         music = FindObjectOfType<Music>();
