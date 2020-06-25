@@ -113,11 +113,12 @@ public class GameSceneController : MonoBehaviour
         // Spawn Right Goal
         horizontalPosition = screenBounds.x - goalOffset;
         verticalPosition = 0;
-        Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-        //var rightGoal = Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+        //Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+        var rightGoal = Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
 
+        rightGoal.GetComponent<SpriteRenderer>();
         // Flip the goal
-        // rightGoal.sr.flip.x = true;
+        rightGoal.transform.localScale = new Vector3(-1, 1, 1);
 
         yield return true;
     }
