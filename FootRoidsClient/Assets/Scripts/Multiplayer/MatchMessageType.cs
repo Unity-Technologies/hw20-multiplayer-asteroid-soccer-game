@@ -22,6 +22,7 @@ namespace Multiplayer
     /// </summary>
     public enum MatchMessageType
     {
+        StadiumEntered,
         MatchStarted,
 
         MatchEnded,

@@ -31,7 +31,7 @@ namespace FootRoids
                 ISocket socket = ServerSessionManager.Instance.Socket;
                 socket.ReceivedMatchmakerMatched -= MatchmakerMatched;
 
-                StartCoroutine(LoadStadium(matched));
+                //StartCoroutine(LoadStadium(matched));
             });
         }
         

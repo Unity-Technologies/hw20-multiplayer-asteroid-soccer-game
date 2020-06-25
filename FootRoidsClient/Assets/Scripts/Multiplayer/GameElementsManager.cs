@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Multiplayer
@@ -22,10 +23,9 @@ namespace Multiplayer
         {
             Debug.Log("Populating Game Elements");
 
-            if( GameManager.Instance.IsHost == false)
+            if( MatchMaker.Instance.IsHost == false)
             {
                 Debug.LogError("NOT HOST");
-                // only the host creates game elements
                 return;
             }
 
@@ -54,7 +54,21 @@ namespace Multiplayer
             Debug.Log("Spawning asteroid");
 
             // TODO: more details on setting orientation...can we send a transform?
-            GameObject roid = Instantiate(asteroidLargePrefab, message.ElementPosition, Quaternion.identity, transform);
+
+            try
+            {
+                UnityMainThreadDispatcher.Instance().Enqueue(() => {
+                    // hax
+
+                    Vector3 pos = new Vector3(message.direction_x, message.direction_y, message.direction_z);
+                    GameObject roid = Instantiate(asteroidLargePrefab, pos, Quaternion.identity, transform);
+                });
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("NUTS!! " + e.Message);
+            }
+
 
             // TODO: handle destruction
             // TODO: need to keep track in a list?            

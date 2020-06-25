@@ -12,6 +12,20 @@ namespace Multiplayer
 {
     public class MatchCommunicationManager : Singleton<MatchCommunicationManager>
     {
+
+        public delegate void OnStadiumEnteredHandler();
+        private event OnStadiumEnteredHandler OnStadiumEntered;
+
+        public void SubscribeToStadiumEnteredEvent(OnStadiumEnteredHandler stadiumEnteredHandler)
+        {
+            OnStadiumEntered += stadiumEnteredHandler;
+        }
+
+        public void UnsubscribeFromStadiumEnteredEvent(OnStadiumEnteredHandler stadiumEnteredHandler)
+        {
+            OnStadiumEntered -= stadiumEnteredHandler;
+        }
+
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
         public event Action<MatchMessageAsteroidSpawned> OnAsteroidSpawned;        
@@ -24,14 +38,15 @@ namespace Multiplayer
 
         private ISocket _socket { get { return ServerSessionManager.Instance.Socket;  } }
 
-        private bool allPlayersAdded;
-        private bool isLeaving;
         private int playersInMatch;
         private Queue<IncommingMessageState> inboundMessages = new Queue<IncommingMessageState>();
 
         private void Start()
         {
+            DontDestroyOnLoad(gameObject);
+
             OnGameEnded += GameEnded;
+            _socket.ReceivedMatchState += ReceiveMatchStateMessage;
         }
 
         private void StartGame()
@@ -67,6 +82,7 @@ namespace Multiplayer
         {
             try
             {
+                Debug.LogError("Sending Match Data...");
                 //Packing MatchMessage object to json
                 string json = MatchMessage<T>.ToJson(message);
 
@@ -84,11 +100,15 @@ namespace Multiplayer
         public void SendMatchStateMessageSelf<T>(MatchMessageType opCode, T message)
             where T : MatchMessage<T>
         {
+            Debug.LogError("Sending Match Data to Self");
             // TODO: add more cases
             switch(opCode)
             {
                 case MatchMessageType.AsteroidSpawned:
                     OnAsteroidSpawned?.Invoke(message as MatchMessageAsteroidSpawned);
+                    break;
+                case MatchMessageType.StadiumEntered:
+                    OnStadiumEntered?.Invoke();
                     break;
             }
         }
@@ -104,7 +124,6 @@ namespace Multiplayer
 
                     if (AllPlayersJoined)
                     {
-                        allPlayersAdded = true;
                         StartGame();
                     }
                 }
@@ -141,6 +160,9 @@ namespace Multiplayer
                 case MatchMessageType.AsteroidSpawned:
                     MatchMessageAsteroidSpawned asteroidSpawned = MatchMessageAsteroidSpawned.Parse(messageJson);
                     OnAsteroidSpawned?.Invoke(asteroidSpawned);
+                    break;
+                case MatchMessageType.StadiumEntered:
+                    OnStadiumEntered?.Invoke();
                     break;
                 default:
                     Debug.Log("Needs more implementation!");

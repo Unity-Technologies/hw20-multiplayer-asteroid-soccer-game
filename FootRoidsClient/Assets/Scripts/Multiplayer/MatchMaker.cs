@@ -15,7 +15,23 @@ public class MatchMaker : Singleton<MatchMaker> {
     private IMatchmakerMatched _pendingMatch;
     private IMatch _joinedMatch;
     private List<IUserPresence> _readyPlayers;
-    
+
+    private bool forceHost = true;
+    private string fakeHostId = "it me";
+
+    [SerializeField]
+    public string CurrentHostId;
+
+    public bool IsHost
+    {
+        get
+        {
+            Debug.LogError("UserID " + ServerSessionManager.Instance.Session.UserId);
+            Debug.LogError("Current Host ID: " + CurrentHostId);
+            return (CurrentHostId == ServerSessionManager.Instance.Session.UserId || CurrentHostId == fakeHostId);
+        }
+    }
+
     public delegate void OnMatchFoundHandler(IMatchmakerMatched matched);
     private event OnMatchFoundHandler OnMatchFound;
     
@@ -58,15 +74,41 @@ public class MatchMaker : Singleton<MatchMaker> {
         return Instance._joinedMatch.Id;
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        MatchCommunicationManager.Instance.SubscribeToStadiumEnteredEvent(OnStadiumEntered);        
+    }
+
     public async void StartMatchmaking(string query) {
         ServerSessionManager.Instance.Socket.ReceivedMatchmakerMatched += OnMatchMakerMatched;
         _readyPlayers = new List<IUserPresence>();
         await ServerSessionManager.Instance.Socket.AddMatchmakerAsync(query, _minPlayerCount, _maxPlayerCount);
     }
 
+    int count = 0;
+    void OnStadiumEntered()
+    {
+        if(IsHost)
+        {
+            Debug.Log("COUNTING UP " + count);
+            count++;
+            if(count == _pendingMatch.Users.Count())
+            {
+                // TODO: make more robust by checking userid
+                Debug.LogError("YAYAYA " + count);
+                UnityMainThreadDispatcher.Instance().Enqueue(() => {
+                    FindObjectOfType<GameManager>().InitializeGame(); // hax
+                });
+            }
+        }
+    }
+
     void OnMatchMakerMatched(IMatchmakerMatched matched) {
         ServerSessionManager.Instance.Socket.ReceivedMatchmakerMatched -= OnMatchMakerMatched;
         _pendingMatch = matched;
+
+        ChooseHost();        
 
         UnityMainThreadDispatcher.Instance().Enqueue(() => {
             OnMatchFound?.Invoke(matched);
@@ -118,5 +160,36 @@ public class MatchMaker : Singleton<MatchMaker> {
 
     private bool HasPlayerAlreadyJoined(IUserPresence player) {
         return _readyPlayers.Contains(player);
+    }
+
+    private void ChooseHost()
+    {       
+        if(forceHost)
+        {
+            if(fakeHostId == "it me")
+            {
+                CurrentHostId = fakeHostId;
+            }
+
+            return;
+        }
+
+        // Add the session id of all users connected to the match
+        List<string> userSessionIds = new List<string>();
+        foreach (IMatchmakerUser user in _pendingMatch.Users)
+        {
+            userSessionIds.Add(user.Presence.SessionId);
+        }
+
+        // Perform a lexicographical sort on list of user session ids
+        userSessionIds.Sort();
+
+        // First user from the sorted list will be the host of current match
+        string hostSessionId = userSessionIds.First();
+
+        // Get the user id from session id
+        IMatchmakerUser hostUser = _pendingMatch.Users.First(x => x.Presence.SessionId == hostSessionId);
+        CurrentHostId = hostUser.Presence.UserId;
+        Debug.Log("HOST ID: " + CurrentHostId);
     }
 }

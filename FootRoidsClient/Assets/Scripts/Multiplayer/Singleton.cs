@@ -47,7 +47,7 @@ namespace Multiplayer {
                         go.AddComponent<T>();
 
                         _instance = go.GetComponent<T>();
-                        DontDestroyOnLoad(go);
+                        //DontDestroyOnLoad(go);
                     }
 
                     return _instance;

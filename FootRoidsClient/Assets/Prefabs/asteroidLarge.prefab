@@ -119,10 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxThrust: 100
   maxTorque: 100
-  screenTop: 12
-  screenBottom: -12
-  screenRight: 15
-  screenLeft: -15
+  gameSceneController: {fileID: 0}
   rb: {fileID: 50479710960651190}
 --- !u!70 &5390838473899783491
 CapsuleCollider2D:
