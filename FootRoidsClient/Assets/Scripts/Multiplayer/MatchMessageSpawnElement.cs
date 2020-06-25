@@ -6,14 +6,14 @@ namespace Multiplayer
 {
     public class MatchMessageSpawnElement : MatchMessage<MatchMessageSpawnElement>
     {
-        public readonly int ElementId;
+        public readonly int elementId;
         public readonly float x;
         public readonly float y;
         public readonly float angle;
 
-        public MatchMessageSpawnElement(int id, float _x, float _y, float _a)
+        public MatchMessageSpawnElement(string id, float _x, float _y, float _a)
         {
-            ElementId = id;
+            elementId = id.GetHashCode();
             x = _x;
             y = _y;
             angle = _a;

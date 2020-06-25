@@ -30,9 +30,9 @@ public class GameSceneController : Singleton<GameSceneController>
 
     [Header("Player Settings")]
     [Space]
-    public GameObject[] playerList;
-    public GameObject playerObjectPrefab;
-    public int numOfPlayers;
+    [SerializeField] GameObject playerObjectPrefab;
+    [SerializeField] GameObject playerObjectPrefab_Network;
+    [SerializeField] int numOfPlayers;
 
     [Header("Ball Settings")]
     [Space]
@@ -46,6 +46,8 @@ public class GameSceneController : Singleton<GameSceneController>
     public GameObject goalObjectPrefab;
     public int numOfGoals;
     public int goalOffset;
+    
+    Dictionary<int, GameObject> otherPlayers = new Dictionary<int, GameObject>();
 
     void Start()
     {
@@ -53,6 +55,8 @@ public class GameSceneController : Singleton<GameSceneController>
         MatchCommunicationManager.Instance.OnPlayerSpawned += OnSpawnPlayers;
         MatchCommunicationManager.Instance.OnBallSpawned += OnSpawnBalls;
         MatchCommunicationManager.Instance.OnGoalSpawned += OnSpawnGoals;
+        
+        MatchCommunicationManager.Instance.OnPlayerPositionUpdated += PlayerPositionUpdated;
 
         if (MatchMaker.Instance.IsHost)
         {
@@ -90,7 +94,7 @@ public class GameSceneController : Singleton<GameSceneController>
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
 
-            MatchMessageSpawnElement element = new MatchMessageSpawnElement(0, horizontalPosition,
+            MatchMessageSpawnElement element = new MatchMessageSpawnElement(currentAsteroids.ToString(), horizontalPosition,
                 verticalPosition, 0.0f);
 
             // tell the clients
@@ -106,13 +110,12 @@ public class GameSceneController : Singleton<GameSceneController>
     // Spawn Players in sides of the field ##Needs Fixing
     private void SpawnPlayers()
     {
-        for (int currentPlayers = 0; currentPlayers < numOfPlayers; currentPlayers++)
+        foreach (var player in MatchMaker.Instance.ReadyPlayers)
         {
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
 
-
-            MatchMessageSpawnElement element = new MatchMessageSpawnElement(0, horizontalPosition,
+            MatchMessageSpawnElement element = new MatchMessageSpawnElement(player.UserId, horizontalPosition,
                 verticalPosition, 0.0f);
 
             // tell the clients
@@ -122,7 +125,7 @@ public class GameSceneController : Singleton<GameSceneController>
             // tell yourself (host)
             MatchCommunicationManager.Instance.SendMatchStateMessageSelf(
                 MatchMessageType.PlayerSpawned, element);
-        };
+        }
     }
 
     // Spawn Balls in sides of the field ##Needs Fixing
@@ -133,7 +136,7 @@ public class GameSceneController : Singleton<GameSceneController>
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
 
-            MatchMessageSpawnElement element = new MatchMessageSpawnElement(0, horizontalPosition,
+            MatchMessageSpawnElement element = new MatchMessageSpawnElement(currentBalls.ToString(), horizontalPosition,
                 verticalPosition, 0.0f);
 
             // tell the clients
@@ -153,7 +156,7 @@ public class GameSceneController : Singleton<GameSceneController>
         float horizontalPosition = -screenBounds.x + goalOffset;
         float verticalPosition = 0;
 
-        MatchMessageSpawnElement element = new MatchMessageSpawnElement(0, horizontalPosition,
+        MatchMessageSpawnElement element = new MatchMessageSpawnElement("GoalLeft", horizontalPosition,
                 verticalPosition, 0.0f);
 
         // tell the clients
@@ -168,7 +171,7 @@ public class GameSceneController : Singleton<GameSceneController>
         horizontalPosition = screenBounds.x - goalOffset;
         verticalPosition = 0;
 
-        element = new MatchMessageSpawnElement(0, horizontalPosition,
+        element = new MatchMessageSpawnElement("GoalRight", horizontalPosition,
                 verticalPosition, 180.0f);
 
         // tell the clients
@@ -217,7 +220,16 @@ public class GameSceneController : Singleton<GameSceneController>
             UnityMainThreadDispatcher.Instance().Enqueue(() => {
                 Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
                 Vector3 pos = new Vector3(message.x, message.y);
-                GameObject roid = Instantiate(playerObjectPrefab, pos, rot, transform);
+
+                GameObject prefab;
+                if (message.elementId == ServerSessionManager.Instance.Session.UserId.GetHashCode())
+                {
+                    Instantiate(playerObjectPrefab, pos, rot, transform);
+                }
+                else
+                {
+                    otherPlayers.Add(message.elementId, Instantiate(playerObjectPrefab_Network, pos, rot, transform));
+                }
             });
         }
         catch (System.Exception e)
@@ -279,16 +291,17 @@ public class GameSceneController : Singleton<GameSceneController>
         return mainCamera.ScreenToWorldPoint(screenVector);
     }
 
-    void PositionUpdated(Vector3 pos, int shipId)
+    void PlayerPositionUpdated(float posX, float posY, float angle, int shipId)
     {
-        //m_TempOtherShipInstance.transform.position = pos;
-    }
-    
-    void RotationUpdated(float rot, int shipId)
-    {
-        //var newRot = m_TempOtherShipInstance.transform.eulerAngles;
-        //newRot.z = rot;
-        
-        //m_TempOtherShipInstance.transform.eulerAngles = newRot;
+        otherPlayers.TryGetValue(shipId, out GameObject ship);
+        if (ship != null)
+        {
+            ship.transform.position = new Vector3(posX, posY, 0.0f);
+            
+            var newRot = ship.transform.eulerAngles;
+            newRot.z = angle;
+            
+            ship.transform.eulerAngles = newRot;
+        }
     }
 }

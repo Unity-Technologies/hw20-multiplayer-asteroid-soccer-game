@@ -50,8 +50,9 @@ MonoBehaviour:
   maxAsteroids: 4
   asteroid: {fileID: 4077591513428862216, guid: 2dadb673d5fb14e88af5b98b28dd9fc5,
     type: 3}
-  playerList: []
   playerObjectPrefab: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
+    type: 3}
+  playerObjectPrefab_Network: {fileID: 1997850549995088431, guid: 4bc5b6ec4c9c9584e8dd0ff97a9f1e95,
     type: 3}
   numOfPlayers: 1
   balls: []

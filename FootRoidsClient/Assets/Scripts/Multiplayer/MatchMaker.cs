@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Multiplayer;
 using Nakama;
@@ -14,6 +15,8 @@ public class MatchMaker : Singleton<MatchMaker> {
     private OnMatchFoundHandler _matchMadeCallback;
     private IMatchmakerMatched _pendingMatch;
     private IMatch _joinedMatch;
+    
+    public ReadOnlyCollection<IUserPresence> ReadyPlayers => new ReadOnlyCollection<IUserPresence>(_readyPlayers);
     private List<IUserPresence> _readyPlayers;
 
     private bool forceHost = true;

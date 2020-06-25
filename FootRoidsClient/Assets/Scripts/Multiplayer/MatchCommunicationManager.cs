@@ -36,9 +36,7 @@ namespace Multiplayer
         public event Action<MatchMessageSpawnElement> OnBallSpawned;
         public event Action<MatchMessageSpawnElement> OnGoalSpawned;
 
-
-        public event Action<Vector3, int> OnPositionUpdated;
-        public event Action<float, int> OnRotationUpdated;
+        public event Action<float, float, float, int> OnPlayerPositionUpdated;
 
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
@@ -206,24 +204,17 @@ namespace Multiplayer
                     MatchMessageSpawnElement goalSpawn = MatchMessageSpawnElement.Parse(messageJson);
                     OnGoalSpawned?.Invoke(goalSpawn);
                     break;
-                case MatchMessageType.PositionUpdated:
-                    
+                case MatchMessageType.PlayerPositionUpdated:
                     var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
-                    var pos = new Vector3(positionValues.posX, positionValues.posY, 0.0f);
-                    
-                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                    {
-                        OnPositionUpdated?.Invoke(pos, 0);
-                    });
 
-                    break;
-                case MatchMessageType.RotationUpdated:
-                    
-                    var rotationValues = messageJson.FromJson<MatchMessageRotationUpdated>();
+                    var posX = positionValues.posX;
+                    var posY = positionValues.posY;
+                    var angle = positionValues.angle;
+                    var id = positionValues.id;
                     
                     UnityMainThreadDispatcher.Instance().Enqueue(() =>
                     {
-                        OnRotationUpdated?.Invoke(rotationValues.rot, 0);
+                        OnPlayerPositionUpdated?.Invoke(posX, posY, angle, id);
                     });
 
                     break;

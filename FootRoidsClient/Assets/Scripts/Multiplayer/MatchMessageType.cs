@@ -31,7 +31,6 @@ namespace Multiplayer
         BallSpawned,
         GoalSpawned,
 
-        PositionUpdated,
-        RotationUpdated
+        PlayerPositionUpdated
     }
 }

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed;
 
     Vector3 m_PreviousPosition;
-    Vector3 m_PreviousRotation;
+    float m_PreviousRotation;
     
     // Access the GameSceneController
     public GameSceneController gameSceneController;
@@ -32,8 +32,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         sr = GetComponentInParent<SpriteRenderer>();
 
-        m_PreviousPosition = transform.position;
-        m_PreviousRotation = transform.eulerAngles;
+        var trs = transform;
+        m_PreviousPosition = trs.position;
+        m_PreviousRotation = trs.eulerAngles.z;
     }
 
     // Update is called once per frame
@@ -46,26 +47,20 @@ public class PlayerController : MonoBehaviour
     // Fixed timing update
     void FixedUpdate()
     {
-        var pos = transform.position;
-        if (m_PreviousPosition != pos)
+        var trs = transform;
+        var pos = trs.position;
+        var rot = trs.eulerAngles.z;
+        
+        if (m_PreviousPosition != pos || m_PreviousRotation != rot)
         {
-            var opCode = MatchMessageType.PositionUpdated;
-            var newState = new MatchMessagePositionUpdated(pos.x, pos.y);
+            var opCode = MatchMessageType.PlayerPositionUpdated;
+            var newState = new MatchMessagePositionUpdated(ServerSessionManager.Instance.Session.UserId, pos.x, pos.y, rot);
             MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
         }
 
         m_PreviousPosition = pos;
-
-        var rot = transform.eulerAngles;
-        if (m_PreviousRotation != rot)
-        {
-            var opCode = MatchMessageType.RotationUpdated;
-            var newState = new MatchMessageRotationUpdated(rot.z);
-            MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
-        }
-
         m_PreviousRotation = rot;
-        
+
         // Get input and apply thrust
         //thrustInput = Input.GetAxis("Vertical");
         rb.AddRelativeForce(Vector2.up * thrustInput * thrust);
