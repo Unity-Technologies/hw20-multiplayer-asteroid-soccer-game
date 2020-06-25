@@ -8,6 +8,7 @@ TagManager:
   - Goal
   - Music
   - AudioButton
+  - Foot
   layers:
   - Default
   - TransparentFX

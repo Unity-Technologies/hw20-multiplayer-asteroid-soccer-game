@@ -470,6 +470,12 @@ PrefabInstance:
       propertyPath: numOfGoals
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: NPCPrefab
+      value: 
+      objectReference: {fileID: 3137207920658749115, guid: b48f0154b3e7746939ef086ec1ac3314,
+        type: 3}
     - target: {fileID: 2013320363570575853, guid: 7f27dfde7c765425ab4271d29fc74062,
         type: 3}
       propertyPath: m_RootOrder

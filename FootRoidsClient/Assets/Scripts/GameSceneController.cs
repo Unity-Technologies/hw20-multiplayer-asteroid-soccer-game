@@ -43,6 +43,11 @@ public class GameSceneController : MonoBehaviour
     public int numOfGoals;
     public int goalOffset;
 
+    [Header("NPC Settings")]
+    [Space]
+    public GameObject[] npcs;
+    public GameObject NPCPrefab;
+
     //public GameObject[] teams;
     //public GameObject teamObjectPrefab;
 
@@ -55,6 +60,7 @@ public class GameSceneController : MonoBehaviour
         StartCoroutine(SpawnPlayers());
         StartCoroutine(SpawnBalls());
         StartCoroutine(SpawnGoals());
+        StartCoroutine(SpawnNPCs());
     }
 
     // Update is called once per frame
@@ -121,6 +127,19 @@ public class GameSceneController : MonoBehaviour
         rightGoal.transform.localScale = new Vector3(-1, 1, 1);
 
         yield return true;
+    }
+
+    // Spawn NPC Foot players in 
+    private IEnumerator SpawnNPCs()
+    {
+        for (int currentNPCs = 0; currentNPCs < numOfBalls; currentNPCs++)
+        {
+            float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
+            float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
+            // instantiate a ball
+            Instantiate(NPCPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+            yield return true;
+        };
     }
 
     // Get the screen bounds
