@@ -17,7 +17,12 @@ public class MatchMaker : Singleton<MatchMaker> {
     private List<IUserPresence> _readyPlayers;
 
     private bool forceHost = true;
+
+#if UNITY_EDITOR
     private string fakeHostId = "it me";
+#else
+    private string fakeHostId = "it n me";
+#endif
 
     [SerializeField]
     public string CurrentHostId;
