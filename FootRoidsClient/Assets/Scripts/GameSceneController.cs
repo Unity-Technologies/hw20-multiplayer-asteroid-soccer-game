@@ -4,40 +4,57 @@ using UnityEngine;
 
 public class GameSceneController : MonoBehaviour
 {
-    [Header("Player Settings")]
-    [Range(5, 20)]
-    public float playerSpeed;
-
     [Header("Screen Settings")]
     [Space]
     public Vector3 screenBounds;
 
-    [Header("IsMaster")]
+    [Header("Multiplayer Settings")]
+    [Space]
     public bool isMaster;
 
+    [Header("Asteroid Settings")]
+    [Space]
+    public GameObject[] asteroids;
     public int maxAsteroids;
     public GameObject asteroid;
 
+    [Header("HUD Settings")]
+    [Space]
     private int totalPoints;
     private HUDController hUDController;
-    private PlayerController player;
+    //private PlayerController player;
 
+    [Header("Player Settings")]
+    [Space]
     public GameObject[] playerList;
     public GameObject playerObjectPrefab;
     public int numOfPlayers;
 
+    [Header("Ball Settings")]
+    [Space]
+    public GameObject[] balls;
+    public GameObject ballObjectPrefab;
+    public int numOfBalls;
 
+    [Header("Goal Settings")]
+    [Space]
+    public GameObject[] goals;
+    public GameObject goalObjectPrefab;
+    public int numOfGoals;
+    public int goalOffset;
+
+    //public GameObject[] teams;
+    //public GameObject teamObjectPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         hUDController = FindObjectOfType<HUDController>();
         screenBounds = GetScreenBounds();
-        player = FindObjectOfType<PlayerController>();
-        playerObjectPrefab = Resources.Load<GameObject>("ship");
         StartCoroutine(SpawnAsteroids());
-        numOfPlayers = 1;
         StartCoroutine(SpawnPlayers());
+        StartCoroutine(SpawnBalls());
+        StartCoroutine(SpawnGoals());
     }
 
     // Update is called once per frame
@@ -59,7 +76,6 @@ public class GameSceneController : MonoBehaviour
 
     // Spawn Players in sides of the field ##Needs Fixing
     private IEnumerator SpawnPlayers()
-
     {
         
         for (int currentPlayers = 0; currentPlayers < numOfPlayers; currentPlayers++)
@@ -71,7 +87,41 @@ public class GameSceneController : MonoBehaviour
             yield return true;
         };
     }
-    
+
+    // Spawn Balls in sides of the field ##Needs Fixing
+    private IEnumerator SpawnBalls()
+    {
+
+        for (int currentBalls = 0; currentBalls < numOfBalls; currentBalls++)
+        {
+            float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
+            float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
+            // instantiate a ball
+            Instantiate(ballObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+            yield return true;
+        };
+    }
+
+    // Spawn Goals in sides of the field ##Needs Fixing
+    private IEnumerator SpawnGoals()
+    {
+        // Spawn Left Goal
+        float horizontalPosition = -screenBounds.x + goalOffset;
+        float verticalPosition = 0;
+        Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+
+        // Spawn Right Goal
+        horizontalPosition = screenBounds.x - goalOffset;
+        verticalPosition = 0;
+        //Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+        var rightGoal = Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
+
+        rightGoal.GetComponent<SpriteRenderer>();
+        // Flip the goal
+        rightGoal.transform.localScale = new Vector3(-1, 1, 1);
+
+        yield return true;
+    }
 
     // Get the screen bounds
     private Vector3 GetScreenBounds()
