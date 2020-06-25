@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
         type: 3}
       propertyPath: m_Name
-      value: ship
+      value: ship_network
       objectReference: {fileID: 0}
     - target: {fileID: 304458594359201564, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
         type: 3}
@@ -67,10 +67,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304458594359201566, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 304458594359201566, guid: 0d9e09bb89af64d55aa8e2901fb0d645, type: 3}
-    - {fileID: 304458594359201567, guid: 0d9e09bb89af64d55aa8e2901fb0d645, type: 3}
     - {fileID: 304458594359201563, guid: 0d9e09bb89af64d55aa8e2901fb0d645, type: 3}
     - {fileID: 304458594359201562, guid: 0d9e09bb89af64d55aa8e2901fb0d645, type: 3}
-    - {fileID: 2912688177194685577, guid: 0d9e09bb89af64d55aa8e2901fb0d645, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0d9e09bb89af64d55aa8e2901fb0d645, type: 3}

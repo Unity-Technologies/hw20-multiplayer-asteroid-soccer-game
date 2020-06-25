@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour
     // Access the GameSceneController
     public GameSceneController gameSceneController;
 
-    private float thrustInput;
-    private float turnInput;
+    public int id { get; set; }
+    
+    public float thrustInput { get; set; }
+    public float turnInput { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,11 @@ public class PlayerController : MonoBehaviour
     // Fixed timing update
     void FixedUpdate()
     {
+        if (!MatchMaker.Instance.IsHost)
+        {
+            return;
+        }
+        
         var trs = transform;
         var pos = trs.position;
         var rot = trs.eulerAngles.z;
@@ -54,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (m_PreviousPosition != pos || m_PreviousRotation != rot)
         {
             var opCode = MatchMessageType.PlayerPositionUpdated;
-            var newState = new MatchMessagePositionUpdated(ServerSessionManager.Instance.Session.UserId, pos.x, pos.y, rot);
+            var newState = new MatchMessagePositionUpdated(id, pos.x, pos.y, rot);
             MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
         }
 
@@ -95,6 +102,8 @@ public class PlayerController : MonoBehaviour
         //rotate the ship 
         transform.Rotate(Vector3.forward * -turnInput * Time.deltaTime * turnThrust);
 
+        return;
+        
         // Screen wrapping
         Vector2 newPos = transform.position;
 
@@ -135,10 +144,30 @@ public class PlayerController : MonoBehaviour
         {
             var rotationInput = callbackContext.action.ReadValue<Vector2>();
 
-            turnInput = rotationInput.x;
+            if (MatchMaker.Instance.IsHost)
+            {
+                turnInput = rotationInput.x;
+            }
+            else
+            {
+                var opCode = MatchMessageType.PlayerInputRotationUpdated;
+                var newState = new MatchMessageInputRotationUpdated(ServerSessionManager.Instance.Session.UserId, rotationInput.x);
+                MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+            }
         }
         else if (callbackContext.canceled)
         {
+            if (MatchMaker.Instance.IsHost)
+            {
+                turnInput = 0.0f;
+            }
+            else
+            {
+                var opCode = MatchMessageType.PlayerInputRotationUpdated;
+                var newState = new MatchMessageInputRotationUpdated(ServerSessionManager.Instance.Session.UserId, 0.0f);
+                MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+            }
+            
             turnInput = 0.0f;
         }
     }
@@ -147,13 +176,31 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.performed)
         {
-            var rotationInput = callbackContext.action.ReadValue<Vector2>();
+            var thrustInputValue = callbackContext.action.ReadValue<Vector2>();
 
-            thrustInput = rotationInput.y;
+            if (MatchMaker.Instance.IsHost)
+            {
+                thrustInput = thrustInputValue.y;
+            }
+            else
+            {
+                var opCode = MatchMessageType.PlayerInputThrustUpdated;
+                var newState = new MatchMessageInputThrustUpdated(ServerSessionManager.Instance.Session.UserId, thrustInputValue.y);
+                MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+            }
         }
         else if (callbackContext.canceled)
         {
-            thrustInput = 0.0f;
+            if (MatchMaker.Instance.IsHost)
+            {
+                thrustInput = 0.0f;
+            }
+            else
+            {
+                var opCode = MatchMessageType.PlayerInputThrustUpdated;
+                var newState = new MatchMessageInputThrustUpdated(ServerSessionManager.Instance.Session.UserId, 0.0f);
+                MatchCommunicationManager.Instance.SendMatchStateMessage(opCode, newState);
+            }
         }
     }
 }
