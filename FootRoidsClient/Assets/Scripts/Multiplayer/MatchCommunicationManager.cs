@@ -176,6 +176,7 @@ namespace Multiplayer
                     break;
                 case MatchMessageType.StadiumEntered:
                     OnStadiumEntered?.Invoke();
+                    break;
                 case MatchMessageType.PositionUpdated:
                     
                     var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
