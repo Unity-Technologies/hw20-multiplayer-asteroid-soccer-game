@@ -154,6 +154,7 @@ namespace Multiplayer
                 case MatchMessageType.AsteroidSpawned:
                     MatchMessageAsteroidSpawned asteroidSpawned = MatchMessageAsteroidSpawned.Parse(messageJson);
                     OnAsteroidSpawned?.Invoke(asteroidSpawned);
+                    break;
                 case MatchMessageType.PositionUpdated:
                     
                     var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
