@@ -17,8 +17,8 @@ public class Music : MonoBehaviour
 		{
             // Allow audio to keep playing between scenes
 			instance = this;
-			DontDestroyOnLoad(gameObject);
 		}
+        DontDestroyOnLoad(gameObject);
     }
 
 	public void ToggleSound()
