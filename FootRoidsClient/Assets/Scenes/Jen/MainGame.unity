@@ -437,8 +437,63 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: ballObjectPrefab
+      value: 
+      objectReference: {fileID: 3349321676048958299, guid: 6f72350364a194ccbb465c9d68e02f36,
+        type: 3}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: playerObjectPrefab
+      value: 
+      objectReference: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
+        type: 3}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: goalObjectPrefab
+      value: 
+      objectReference: {fileID: 6977995978601899823, guid: 2c51531c45ec2426d80bebcf85ebe83c,
+        type: 3}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: numOfPlayers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: numOfBalls
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: numOfGoals
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575853, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575855, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: gameSceneController
+      value: 
+      objectReference: {fileID: 955471383}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f27dfde7c765425ab4271d29fc74062, type: 3}
+--- !u!114 &955471383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2013320363570575852, guid: 7f27dfde7c765425ab4271d29fc74062,
+    type: 3}
+  m_PrefabInstance: {fileID: 830449248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53811b1fc3cf943aba4adf70514d7fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1581890206
 GameObject:
   m_ObjectHideFlags: 0
