@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class GoalCenterController : MonoBehaviour
 {
+    private AudioSource audioSource;
     public ScoreScript ScoreText;
     public GameSceneController GameScene;
     private int goalScore = 0;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {   
@@ -14,6 +20,7 @@ public class GoalCenterController : MonoBehaviour
         {
             goalScore = goalScore + 1;
             ScoreText.SetScore(goalScore);
+            audioSource.Play();
             Destroy (collision.gameObject); // Destroy the colliding socccer ball
             GameScene.SpawnBall();
         }
