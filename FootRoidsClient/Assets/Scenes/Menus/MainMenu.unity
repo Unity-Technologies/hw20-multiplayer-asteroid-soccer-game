@@ -2230,6 +2230,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MatchFound
       objectReference: {fileID: 0}
+    - target: {fileID: 2705902444836167932, guid: e8ba45ab735687242a484d3b2b08d9fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6147103827015085647, guid: e8ba45ab735687242a484d3b2b08d9fd,
         type: 3}
       propertyPath: m_LocalPosition.x
