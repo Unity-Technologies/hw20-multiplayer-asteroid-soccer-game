@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class GoalCenterController : MonoBehaviour
 {
-    static int goalScore = 0;
-    // Start is called before the first frame update
+    public ScoreScript ScoreText;
+    private int goalScore = 0;
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {   
         if (collision.gameObject.tag.Equals("Ball"))
         {
-            ScoreScript.scoreValue += 1;
+            goalScore = goalScore + 1;
+            ScoreText.SetScore(goalScore);
             Destroy (collision.gameObject); // Destroy the colliding socccer ball
-            Debug.Log($"score: {ScoreScript.scoreValue}");
         }
     }
 

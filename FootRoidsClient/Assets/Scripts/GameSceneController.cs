@@ -36,13 +36,6 @@ public class GameSceneController : MonoBehaviour
     public GameObject ballObjectPrefab;
     public int numOfBalls;
 
-    [Header("Goal Settings")]
-    [Space]
-    public GameObject[] goals;
-    public GameObject goalObjectPrefab;
-    public int numOfGoals;
-    public int goalOffset;
-
     //public GameObject[] teams;
     //public GameObject teamObjectPrefab;
 
@@ -54,7 +47,6 @@ public class GameSceneController : MonoBehaviour
         StartCoroutine(SpawnAsteroids());
         StartCoroutine(SpawnPlayers());
         StartCoroutine(SpawnBalls());
-        StartCoroutine(SpawnGoals());
     }
 
     // Update is called once per frame
@@ -100,27 +92,6 @@ public class GameSceneController : MonoBehaviour
             Instantiate(ballObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
             yield return true;
         };
-    }
-
-    // Spawn Goals in sides of the field ##Needs Fixing
-    private IEnumerator SpawnGoals()
-    {
-        // Spawn Left Goal
-        float horizontalPosition = -screenBounds.x + goalOffset;
-        float verticalPosition = 0;
-        Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-
-        // Spawn Right Goal
-        horizontalPosition = screenBounds.x - goalOffset;
-        verticalPosition = 0;
-        //Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-        var rightGoal = Instantiate(goalObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-
-        rightGoal.GetComponent<SpriteRenderer>();
-        // Flip the goal
-        rightGoal.transform.localScale = new Vector3(-1, 1, 1);
-
-        yield return true;
     }
 
     // Get the screen bounds
