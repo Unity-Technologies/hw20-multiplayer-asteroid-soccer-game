@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2021220735668317992}
   - component: {fileID: 7945213431195052667}
   - component: {fileID: 4234290883006463764}
+  - component: {fileID: 8865575700521091408}
   m_Layer: 0
   m_Name: dummyred_0
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8865575700521091408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857583064808870676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99a170f81c4a47a9b9dca124994e40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5192368512374688344
 GameObject:
   m_ObjectHideFlags: 0

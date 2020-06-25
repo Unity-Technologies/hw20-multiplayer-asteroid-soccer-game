@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3202505731682267957}
   - component: {fileID: 3202505731682267956}
   - component: {fileID: 10063776822978720}
+  - component: {fileID: 8724548621973938338}
   m_Layer: 0
   m_Name: dummyblue_1
   m_TagString: Untagged
@@ -225,3 +226,15 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8724548621973938338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202505731682267961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99a170f81c4a47a9b9dca124994e40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
