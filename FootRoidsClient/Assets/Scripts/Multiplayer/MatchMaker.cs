@@ -91,7 +91,7 @@ public class MatchMaker : Singleton<MatchMaker> {
         await ServerSessionManager.Instance.Socket.AddMatchmakerAsync(query, _minPlayerCount, _maxPlayerCount);
     }
 
-    int count = 0;
+    int count = 0; //hax
     void OnStadiumEntered()
     {
         if(IsHost)
@@ -103,7 +103,7 @@ public class MatchMaker : Singleton<MatchMaker> {
                 // TODO: make more robust by checking userid
                 Debug.LogError("YAYAYA " + count);
                 UnityMainThreadDispatcher.Instance().Enqueue(() => {
-                    FindObjectOfType<GameManager>().InitializeGame(); // hax
+                    FindObjectOfType<GameSceneController>().InitializeGame(); // hax
                 });
             }
         }

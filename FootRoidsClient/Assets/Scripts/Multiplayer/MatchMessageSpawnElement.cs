@@ -4,19 +4,20 @@ using UnityEngine;
 
 namespace Multiplayer
 {
-    public class MatchMessageAsteroidSpawned : MatchMessage<MatchMessageAsteroidSpawned>
+    public class MatchMessageSpawnElement : MatchMessage<MatchMessageSpawnElement>
     {
         public readonly int ElementId;
         public readonly float x;
         public readonly float y;
+        public readonly float angle;
 
-
-        public MatchMessageAsteroidSpawned(float _x, float _y, int elementId)
+        public MatchMessageSpawnElement(int id, float _x, float _y, float _a)
         {
-            ElementId = elementId;
-
+            ElementId = id;
             x = _x;
             y = _y;
+            angle = _a;
         }
     }
 }
+

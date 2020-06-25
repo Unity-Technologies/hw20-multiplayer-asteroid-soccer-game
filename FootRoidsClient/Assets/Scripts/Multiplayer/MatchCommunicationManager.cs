@@ -28,7 +28,10 @@ namespace Multiplayer
 
         public event Action OnGameStarted;
         public event Action<MatchMessageGameEnded> OnGameEnded;
-        public event Action<MatchMessageAsteroidSpawned> OnAsteroidSpawned;        
+        public event Action<MatchMessageSpawnElement> OnAsteroidSpawned;
+        public event Action<MatchMessageSpawnElement> OnPlayerSpawned;
+
+
         public event Action<Vector3, int> OnPositionUpdated;
         public event Action<float, int> OnRotationUpdated;
 
@@ -118,7 +121,10 @@ namespace Multiplayer
             switch(opCode)
             {
                 case MatchMessageType.AsteroidSpawned:
-                    OnAsteroidSpawned?.Invoke(message as MatchMessageAsteroidSpawned);
+                    OnAsteroidSpawned?.Invoke(message as MatchMessageSpawnElement);
+                    break;
+                case MatchMessageType.PlayerSpawned:
+                    OnPlayerSpawned?.Invoke(message as MatchMessageSpawnElement);
                     break;
                 case MatchMessageType.StadiumEntered:
                     OnStadiumEntered?.Invoke();
@@ -170,12 +176,16 @@ namespace Multiplayer
             {
                 case MatchMessageType.MatchEnded:
                     break;
-                case MatchMessageType.AsteroidSpawned:
-                    MatchMessageAsteroidSpawned asteroidSpawned = MatchMessageAsteroidSpawned.Parse(messageJson);
-                    OnAsteroidSpawned?.Invoke(asteroidSpawned);
+                case MatchMessageType.AsteroidSpawned:                    
+                    MatchMessageSpawnElement asteroidSpawn = MatchMessageSpawnElement.Parse(messageJson);
+                    OnAsteroidSpawned?.Invoke(asteroidSpawn);
                     break;
                 case MatchMessageType.StadiumEntered:
                     OnStadiumEntered?.Invoke();
+                    break;
+                case MatchMessageType.PlayerSpawned:
+                    MatchMessageSpawnElement playerSpawn = MatchMessageSpawnElement.Parse(messageJson);
+                    OnPlayerSpawned?.Invoke(playerSpawn);
                     break;
                 case MatchMessageType.PositionUpdated:
                     

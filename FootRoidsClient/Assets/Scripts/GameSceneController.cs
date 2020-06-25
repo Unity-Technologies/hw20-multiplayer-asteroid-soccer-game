@@ -6,7 +6,7 @@ using Nakama.TinyJson;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSceneController : MonoBehaviour
+public class GameSceneController : Singleton<GameSceneController>
 {
     [Header("Screen Settings")]
     [Space]
@@ -47,70 +47,150 @@ public class GameSceneController : MonoBehaviour
     public int numOfGoals;
     public int goalOffset;
 
-    //public GameObject[] teams;
-    //public GameObject teamObjectPrefab;
-
-    // Start is called before the first frame update
     void Start()
     {
-        hUDController = FindObjectOfType<HUDController>();
-        screenBounds = GetScreenBounds();
-        StartCoroutine(SpawnAsteroids());
-        StartCoroutine(SpawnPlayers());
-        StartCoroutine(SpawnBalls());
-        StartCoroutine(SpawnGoals());
+        MatchCommunicationManager.Instance.OnAsteroidSpawned += OnSpawnAsteroid;
+        MatchCommunicationManager.Instance.OnPlayerSpawned += OnSpawnPlayers;
 
-        MatchCommunicationManager.Instance.OnPositionUpdated += PositionUpdated;
-        MatchCommunicationManager.Instance.OnRotationUpdated += RotationUpdated;
+        if (MatchMaker.Instance.IsHost)
+        {
+            MatchCommunicationManager.Instance.SendMatchStateMessageSelf(MatchMessageType.StadiumEntered,
+                new MatchMessageStadiumEntered(ServerSessionManager.Instance.Session.UserId));
+        }
+        else
+        {
+            MatchCommunicationManager.Instance.SendMatchStateMessage(MatchMessageType.StadiumEntered,
+                new MatchMessageStadiumEntered(ServerSessionManager.Instance.Session.UserId));
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitializeGame()
     {
+        if (MatchMaker.Instance.IsHost == false)
+        {
+            Debug.LogError("NOT HOST");
+            return;
+        }
+
+        Debug.Log("Populating Game Elements");
+
+        SpawnAsteroids();
+        SpawnPlayers();
     }
 
     // Spawn Asteroids in random locations  #Needs work not visible yet
-    private IEnumerator SpawnAsteroids()
+    private void SpawnAsteroids()
     {
         for (int currentAsteroids = 0; currentAsteroids < maxAsteroids; currentAsteroids++)
         {
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
-            Instantiate(asteroid, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-            yield return true;
+
+            MatchMessageSpawnElement element = new MatchMessageSpawnElement(0, horizontalPosition,
+                verticalPosition, 0.0f);
+
+            // tell the clients
+            MatchCommunicationManager.Instance.SendMatchStateMessage(
+                MatchMessageType.AsteroidSpawned, element);
+
+            // tell yourself (host)
+            MatchCommunicationManager.Instance.SendMatchStateMessageSelf(
+                MatchMessageType.AsteroidSpawned, element);
         };
     }
 
     // Spawn Players in sides of the field ##Needs Fixing
-    private IEnumerator SpawnPlayers()
+    private void SpawnPlayers()
     {
-        
         for (int currentPlayers = 0; currentPlayers < numOfPlayers; currentPlayers++)
         {
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
-            // instantiate a player
-            Instantiate(playerObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);                
-            yield return true;
+
+
+            MatchMessageSpawnElement element = new MatchMessageSpawnElement(0, horizontalPosition,
+                verticalPosition, 0.0f);
+
+            // tell the clients
+            MatchCommunicationManager.Instance.SendMatchStateMessage(
+                MatchMessageType.PlayerSpawned, element);
+
+            // tell yourself (host)
+            MatchCommunicationManager.Instance.SendMatchStateMessageSelf(
+                MatchMessageType.PlayerSpawned, element);           
         };
     }
 
-    // Spawn Balls in sides of the field ##Needs Fixing
-    private IEnumerator SpawnBalls()
+    private void OnSpawnAsteroid(MatchMessageSpawnElement message)
     {
+        Debug.Log("Spawning asteroid");
 
+        // TODO: more details on setting orientation...can we send a transform?
+        // TODO: handle destruction
+        // TODO: need to keep track in a list?            
+
+        try
+        {
+            Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
+
+            UnityMainThreadDispatcher.Instance().Enqueue(() => {
+                Vector3 pos = new Vector3(message.x, message.y);
+                GameObject roid = Instantiate(asteroid, pos, rot, transform);
+            });
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }    
+
+    // Spawn Balls in sides of the field ##Needs Fixing
+    private void SpawnBalls()
+    {
         for (int currentBalls = 0; currentBalls < numOfBalls; currentBalls++)
         {
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
             // instantiate a ball
             Instantiate(ballObjectPrefab, new Vector2(horizontalPosition, verticalPosition), Quaternion.identity);
-            yield return true;
         };
     }
 
+    private void OnSpawnPlayers(MatchMessageSpawnElement message)
+    {
+        Debug.Log("Spawning Player");
+
+        // TODO: more details on setting orientation...can we send a transform?
+        // TODO: handle destruction
+        // TODO: need to keep track in a list?            
+
+        try
+        {
+            Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
+
+            UnityMainThreadDispatcher.Instance().Enqueue(() => {
+                Vector3 pos = new Vector3(message.x, message.y);
+                GameObject roid = Instantiate(playerObjectPrefab, pos, rot, transform);
+            });
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
+
+    private void OnSpawnBalls()
+    {
+
+    }
+
+    private void OnSpawnGoals()
+    {
+
+    }    
+
     // Spawn Goals in sides of the field ##Needs Fixing
-    private IEnumerator SpawnGoals()
+    private void SpawnGoals()
     {
         // Spawn Left Goal
         float horizontalPosition = -screenBounds.x + goalOffset;
@@ -126,8 +206,6 @@ public class GameSceneController : MonoBehaviour
         rightGoal.GetComponent<SpriteRenderer>();
         // Flip the goal
         rightGoal.transform.localScale = new Vector3(-1, 1, 1);
-
-        yield return true;
     }
 
     // Get the screen bounds
