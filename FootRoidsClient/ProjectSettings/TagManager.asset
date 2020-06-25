@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Goal
+  - AudioButton
   layers:
   - Default
   - TransparentFX

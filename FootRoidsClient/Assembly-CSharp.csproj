@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Audio\DontDestroy.cs" />
     <Compile Include="Assets\Nakama\ClientExtensions.cs" />
     <Compile Include="Assets\Nakama\JsWebSocketAdapter.cs" />
     <Compile Include="Assets\Nakama\Snippets\AccountAndUsers.cs" />
@@ -668,9 +669,6 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -691,6 +689,9 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>/Users/lauryn/Desktop/Hackweek2020/hw20-multiplayer-asteroid-soccer-game/FootRoidsClient/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
