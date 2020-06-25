@@ -203,7 +203,7 @@ MonoBehaviour:
   rb: {fileID: 304458594359201566}
   sr: {fileID: 304458594359201565}
   thrust: 10
-  turnThrust: 100
+  turnThrust: 500
   deathSpeed: 6
   mediumSpeed: 50
   maxSpeed: 100
