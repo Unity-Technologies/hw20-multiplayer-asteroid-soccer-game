@@ -8,7 +8,7 @@ namespace Multiplayer
     public class ServerSessionManager : Singleton<ServerSessionManager>
     {
 //        [SerializeField] string _serverAddress = "207.254.17.33";
-        [SerializeField] string _serverAddress = "127.0.0.1";
+        [SerializeField] string _serverAddress = "34.69.157.238";
         [SerializeField] int _port = 7350;
         
         string _deviceId;

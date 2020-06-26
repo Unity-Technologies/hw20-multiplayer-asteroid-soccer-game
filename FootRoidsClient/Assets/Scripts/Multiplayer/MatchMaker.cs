@@ -19,7 +19,7 @@ public class MatchMaker : Singleton<MatchMaker> {
     public ReadOnlyCollection<IUserPresence> ReadyPlayers => new ReadOnlyCollection<IUserPresence>(_readyPlayers);
     private List<IUserPresence> _readyPlayers;
 
-    private bool forceHost = true;
+    private bool forceHost = false;
 
 #if UNITY_EDITOR
     private string fakeHostId = "it me";

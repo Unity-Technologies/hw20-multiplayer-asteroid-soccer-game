@@ -523,6 +523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 2013320363570575855, guid: 7f27dfde7c765425ab4271d29fc74062,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f27dfde7c765425ab4271d29fc74062, type: 3}
 --- !u!1001 &848829573
