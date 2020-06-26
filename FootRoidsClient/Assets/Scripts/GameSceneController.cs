@@ -320,9 +320,10 @@ public class GameSceneController : Singleton<GameSceneController>
     private Vector3 GetScreenBounds()
     {
         Camera mainCamera = Camera.main;
-        Vector3 screenVector = new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z);
+        //Vector3 screenVector = new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z);
 
-        return mainCamera.ScreenToWorldPoint(screenVector);
+        //return mainCamera.ScreenToWorldPoint(screenVector);
+        return new Vector3(17.8f, 10.0f, mainCamera.transform.position.z);
     }
 
     void PlayerPositionUpdated(float posX, float posY, float angle, int shipId)
