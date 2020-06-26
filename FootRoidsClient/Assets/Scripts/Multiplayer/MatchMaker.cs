@@ -34,8 +34,8 @@ public class MatchMaker : Singleton<MatchMaker> {
     {
         get
         {
-            Debug.LogError("UserID " + ServerSessionManager.Instance.Session.UserId);
-            Debug.LogError("Current Host ID: " + CurrentHostId);
+            //Debug.LogError("UserID " + ServerSessionManager.Instance.Session.UserId);
+            //Debug.LogError("Current Host ID: " + CurrentHostId);
             return (CurrentHostId == ServerSessionManager.Instance.Session.UserId || CurrentHostId == fakeHostId);
         }
     }

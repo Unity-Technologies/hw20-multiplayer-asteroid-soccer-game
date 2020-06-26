@@ -103,7 +103,7 @@ namespace Multiplayer
         {
             try
             {
-                Debug.LogError("Sending Match Data...");
+                //Debug.LogError("Sending Match Data...");
                 //Packing MatchMessage object to json
                 string json = MatchMessage<T>.ToJson(message);
 

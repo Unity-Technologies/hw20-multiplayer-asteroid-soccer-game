@@ -49,7 +49,7 @@ public class GameSceneController : Singleton<GameSceneController>
     public int numOfGoals;
     public int goalOffset;
     
-    Dictionary<int, GameObject> otherPlayers = new Dictionary<int, GameObject>();
+    readonly Dictionary<int, GameObject> playerShips = new Dictionary<int, GameObject>();
 
     void Start()
     {
@@ -231,35 +231,32 @@ public class GameSceneController : Singleton<GameSceneController>
                 Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
                 Vector3 pos = new Vector3(message.x, message.y);
 
+                var userId = ServerSessionManager.Instance.Session.UserId.GetHashCode();
+                GameObject shipPrefab;
+                
                 if (MatchMaker.Instance.IsHost)
                 {
-                    if (message.elementId == ServerSessionManager.Instance.Session.UserId.GetHashCode())
-                    {
-                        // Full input, full collisions
-                        var prefab = Instantiate(playerObjectPrefab, pos, rot, transform);
-                        prefab.GetComponent<PlayerController>().id = message.elementId;
-                    }
-                    else
-                    {
-                        // No input, full collisions
-                        var prefab = Instantiate(playerObjectPrefab_Simulation, pos, rot, transform);
-                        prefab.GetComponent<PlayerController>().id = message.elementId;
-                        otherPlayers.Add(message.elementId, prefab);
-                    }
+                    // If true (my ship): Full input, full collisions
+                    // If false (other player): No input, full collisions 
+                    shipPrefab = message.elementId == userId ? playerObjectPrefab : playerObjectPrefab_Simulation;
+                    
                 }
                 else
                 {
-                    if (message.elementId == ServerSessionManager.Instance.Session.UserId.GetHashCode())
-                    {
-                        // Full input, no collisions
-                        Instantiate(playerObjectPrefab_Network, pos, rot, transform);
-                    }
-                    else
-                    {
-                        // No input, no collisions
-                        otherPlayers.Add(message.elementId, Instantiate(playerObjectPrefab_Network_Simulation, pos, rot, transform));
-                    }
+                    // If true (my ship): Full input, no collisions
+                    // If false (other player): No input, no collisions
+                    shipPrefab = message.elementId == userId ? playerObjectPrefab_Network : playerObjectPrefab_Network_Simulation;
+                    
                 }
+                
+                var shipInstance = Instantiate(shipPrefab, pos, rot, transform);
+                if (shipInstance.TryGetComponent(out PlayerController playerController))
+                {
+                    playerController.id = message.elementId;
+                }
+
+                playerShips.Add(message.elementId, shipInstance);
+                
             });
         }
         catch (System.Exception e)
@@ -323,11 +320,9 @@ public class GameSceneController : Singleton<GameSceneController>
 
     void PlayerPositionUpdated(float posX, float posY, float angle, int shipId)
     {
-        Debug.LogError("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        otherPlayers.TryGetValue(shipId, out GameObject ship);
+        playerShips.TryGetValue(shipId, out GameObject ship);
         if (ship != null)
         {
-            Debug.LogError("SSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
             ship.transform.position = new Vector3(posX, posY, 0.0f);
             
             var newRot = ship.transform.eulerAngles;
@@ -339,7 +334,7 @@ public class GameSceneController : Singleton<GameSceneController>
 
     void PlayerInputRotationUpdated(float rotation, int shipId)
     {
-        otherPlayers.TryGetValue(shipId, out GameObject ship);
+        playerShips.TryGetValue(shipId, out GameObject ship);
         if (ship != null)
         {
             ship.GetComponent<PlayerController>().turnInput = rotation;
@@ -348,7 +343,7 @@ public class GameSceneController : Singleton<GameSceneController>
     
     void PlayerInputThrustUpdated(float thrust, int shipId)
     {
-        otherPlayers.TryGetValue(shipId, out GameObject ship);
+        playerShips.TryGetValue(shipId, out GameObject ship);
         if (ship != null)
         {
             ship.GetComponent<PlayerController>().thrustInput = thrust;

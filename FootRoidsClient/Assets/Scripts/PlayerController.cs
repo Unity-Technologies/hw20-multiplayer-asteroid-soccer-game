@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!MatchMaker.Instance.IsHost)
+        {
+            return;
+        }
+        
         ChangeColor();
         MovePlayer();
     }
