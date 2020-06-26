@@ -29,7 +29,7 @@ public class GoalCenterController : MonoBehaviour
             Destroy(explosion, 4);
 
             Destroy (collision.gameObject); // Destroy the colliding socccer ball
-            GameScene.SpawnBall();
+            //GameScene.SpawnBall();
         }
     }
 }
