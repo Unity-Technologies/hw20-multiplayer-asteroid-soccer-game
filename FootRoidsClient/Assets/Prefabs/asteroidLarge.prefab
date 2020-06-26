@@ -121,6 +121,8 @@ MonoBehaviour:
   maxTorque: 100
   gameSceneController: {fileID: 0}
   rb: {fileID: 50479710960651190}
+  roidCollider: {fileID: 6146161452657169525}
+  id: 0
 --- !u!70 &6146161452657169525
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

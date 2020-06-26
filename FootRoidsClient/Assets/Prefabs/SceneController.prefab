@@ -50,6 +50,8 @@ MonoBehaviour:
   maxAsteroids: 4
   asteroid: {fileID: 4077591513428862216, guid: 2dadb673d5fb14e88af5b98b28dd9fc5,
     type: 3}
+  dummyAsteroid: {fileID: 4581584504479797239, guid: f56f599c16ba245b48ed95b314a961a9,
+    type: 3}
   playerObjectPrefab: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
     type: 3}
   playerObjectPrefab_Simulation: {fileID: 7695496603641100832, guid: beaa178deebbd0a4eb43a9e0afab709d,

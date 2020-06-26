@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class DummyController : MonoBehaviour
 {
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int id;
 
     public void updatePosition(float x, float y, float z) {
         //temp vector for new position

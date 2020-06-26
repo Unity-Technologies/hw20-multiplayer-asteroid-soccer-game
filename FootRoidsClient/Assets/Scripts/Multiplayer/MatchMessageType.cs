@@ -27,6 +27,7 @@ namespace Multiplayer
         MatchEnded,
 
         AsteroidSpawned,
+        AsteroidPositionUpdated,
         PlayerSpawned,
         BallSpawned,
         GoalSpawned,

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Multiplayer;
 
 public class AsteroidScript : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class AsteroidScript : MonoBehaviour
 
     // Access GameSceneController
     public GameSceneController gameSceneController;
-
     public Rigidbody2D rb;
+    public Collider2D roidCollider;
+
+    public int id;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +26,16 @@ public class AsteroidScript : MonoBehaviour
         float torque = Random.Range(-maxTorque,maxTorque);
 
         rb.AddForce(thrust);
-        rb.AddTorque(torque);
-        
+        rb.AddTorque(torque);        
     }
 
-    // Update is called once per frame
+    // HOST
     void Update()
-    {
+    {       
         MoveAsteroid();
+        SendUpdate();
     }
-
+   
     private void MoveAsteroid()
     {
         // Screen wrapping
@@ -58,5 +62,12 @@ public class AsteroidScript : MonoBehaviour
 
         // Set the position back to the transform
         transform.position = newPos;
+    }
+
+    void SendUpdate()
+    {
+        var message = new MatchMessageAsteroidPositionUpdated(id, transform.position.x, transform.position.y);
+
+        MatchCommunicationManager.Instance.SendMatchStateMessage(MatchMessageType.AsteroidPositionUpdated, message);
     }
 }

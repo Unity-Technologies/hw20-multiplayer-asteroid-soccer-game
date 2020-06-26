@@ -21,6 +21,7 @@ public class GameSceneController : Singleton<GameSceneController>
     public GameObject[] asteroids;
     public int maxAsteroids;
     public GameObject asteroid;
+    public GameObject dummyAsteroid;
 
     [Header("HUD Settings")]
     [Space]
@@ -50,6 +51,7 @@ public class GameSceneController : Singleton<GameSceneController>
     public int goalOffset;
     
     readonly Dictionary<int, GameObject> playerShips = new Dictionary<int, GameObject>();
+    readonly Dictionary<int, GameObject> activeAsteroids = new Dictionary<int, GameObject>();
 
     //public GameObject[] teams;
     //public GameObject teamObjectPrefab;
@@ -72,6 +74,7 @@ public class GameSceneController : Singleton<GameSceneController>
         else
         {
             MatchCommunicationManager.Instance.OnPlayerPositionUpdated += PlayerPositionUpdated;
+            MatchCommunicationManager.Instance.OnAsteroidPositionUpdated += AsteroidPositionUpdated;
         }
 
         if (MatchMaker.Instance.IsHost)
@@ -202,18 +205,26 @@ public class GameSceneController : Singleton<GameSceneController>
     private void OnSpawnAsteroid(MatchMessageSpawnElement message)
     {
         Debug.Log("Spawning asteroid");
-
-        // TODO: more details on setting orientation...can we send a transform?
-        // TODO: handle destruction
-        // TODO: need to keep track in a list?            
-
+        
         try
         {
-
             UnityMainThreadDispatcher.Instance().Enqueue(() => {
                 Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
                 Vector3 pos = new Vector3(message.x, message.y);
-                GameObject roid = Instantiate(asteroid, pos, rot, transform);
+
+                GameObject roid;
+                if(MatchMaker.Instance.IsHost)
+                {
+                    roid = Instantiate(asteroid, pos, rot, transform);
+                    roid.GetComponent<AsteroidScript>().id = message.elementId;
+                }
+                else
+                {
+                    roid = Instantiate(dummyAsteroid, pos, rot, transform);
+                    roid.GetComponent<DummyController>().id = message.elementId;
+                }                
+
+                activeAsteroids.Add(message.elementId, roid);
             });
         }
         catch (System.Exception e)
@@ -353,6 +364,15 @@ public class GameSceneController : Singleton<GameSceneController>
         if (ship != null)
         {
             ship.GetComponent<PlayerController>().thrustInput = thrust;
+        }
+    }
+
+    void AsteroidPositionUpdated(int id, float x, float y)
+    {
+        activeAsteroids.TryGetValue(id, out GameObject roid);
+        if(roid != null)
+        {
+            roid.transform.position = new Vector3(x, y, 0);
         }
     }
 }

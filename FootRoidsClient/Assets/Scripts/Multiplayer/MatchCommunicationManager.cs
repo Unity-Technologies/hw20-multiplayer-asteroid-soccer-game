@@ -40,6 +40,9 @@ namespace Multiplayer
         public event Action<float, int> OnPlayerInputRotationUpdated;
         public event Action<float, int> OnPlayerInputThrustUpdated;
 
+        public event Action<int, float, float> OnAsteroidPositionUpdated;
+
+
         public string CurrentHostId { private set; get; }
         public string MatchId { private set; get; }
 
@@ -206,6 +209,16 @@ namespace Multiplayer
                     MatchMessageSpawnElement goalSpawn = MatchMessageSpawnElement.Parse(messageJson);
                     OnGoalSpawned?.Invoke(goalSpawn);
                     break;
+                case MatchMessageType.AsteroidPositionUpdated:
+                    {
+                        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                        {
+                            var d = messageJson.FromJson<MatchMessageAsteroidPositionUpdated>();
+                            OnAsteroidPositionUpdated?.Invoke(d.id, d.x, d.y);
+                        });
+
+                        break;
+                    }
                 case MatchMessageType.PlayerPositionUpdated:
                 {
                     var positionValues = messageJson.FromJson<MatchMessagePositionUpdated>();
