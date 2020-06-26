@@ -51,8 +51,14 @@ public class GameSceneController : Singleton<GameSceneController>
     
     readonly Dictionary<int, GameObject> playerShips = new Dictionary<int, GameObject>();
 
+    //public GameObject[] teams;
+    //public GameObject teamObjectPrefab;
+
     void Start()
     {
+        hUDController = FindObjectOfType<HUDController>();
+        screenBounds = GetScreenBounds();
+
         MatchCommunicationManager.Instance.OnAsteroidSpawned += OnSpawnAsteroid;
         MatchCommunicationManager.Instance.OnPlayerSpawned += OnSpawnPlayers;
         MatchCommunicationManager.Instance.OnBallSpawned += OnSpawnBalls;
@@ -93,7 +99,7 @@ public class GameSceneController : Singleton<GameSceneController>
         SpawnAsteroids();
         SpawnPlayers();
         SpawnBalls();
-        SpawnGoals();
+        //SpawnGoals();
     }
 
     // Spawn Asteroids in random locations  #Needs work not visible yet

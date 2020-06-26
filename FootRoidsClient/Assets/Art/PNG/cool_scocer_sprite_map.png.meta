@@ -1,0 +1,596 @@
+fileFormatVersion: 2
+guid: 6e5a5b84451df4bab9b662f967679d14
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 989343891067582369
+    second: cool_scocer_sprite_map_0
+  - first:
+      213: 2089687401448124541
+    second: cool_scocer_sprite_map_1
+  - first:
+      213: -4189848357754415801
+    second: cool_scocer_sprite_map_2
+  - first:
+      213: 4239135656724880924
+    second: cool_scocer_sprite_map_3
+  - first:
+      213: 4244823324012172418
+    second: cool_scocer_sprite_map_4
+  - first:
+      213: 5726508598876633849
+    second: cool_scocer_sprite_map_5
+  - first:
+      213: 3917505048496036027
+    second: cool_scocer_sprite_map_6
+  - first:
+      213: -2913227670468962203
+    second: cool_scocer_sprite_map_7
+  - first:
+      213: 4099060053390544167
+    second: cool_scocer_sprite_map_8
+  - first:
+      213: 6754061415905032445
+    second: cool_scocer_sprite_map_9
+  - first:
+      213: -5407780606820251471
+    second: cool_scocer_sprite_map_10
+  - first:
+      213: -6976611852292005085
+    second: cool_scocer_sprite_map_11
+  - first:
+      213: 3257829181529874247
+    second: cool_scocer_sprite_map_12
+  - first:
+      213: 1130620483926299195
+    second: cool_scocer_sprite_map_13
+  - first:
+      213: 8771235546674103596
+    second: cool_scocer_sprite_map_14
+  - first:
+      213: -6319930086675048276
+    second: cool_scocer_sprite_map_15
+  - first:
+      213: -8363247410894568643
+    second: cool_scocer_sprite_map_16
+  - first:
+      213: -1233098231710001792
+    second: cool_scocer_sprite_map_17
+  - first:
+      213: -2579104200414807374
+    second: cool_scocer_sprite_map_18
+  - first:
+      213: -2947224689379754356
+    second: cool_scocer_sprite_map_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_0
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1717
+        width: 229
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a739c3f60bdabd00800000000000000
+      internalID: 989343891067582369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_1
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 1713
+        width: 218
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d70bce6be9f000d10800000000000000
+      internalID: 2089687401448124541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_2
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 1726
+        width: 219
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7455b4d0e1baad5c0800000000000000
+      internalID: -4189848357754415801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_3
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1716
+        width: 218
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e57cd7b6f64da30800000000000000
+      internalID: 4239135656724880924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_4
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 149
+        width: 346
+        height: 1770
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 284d90ab254a8ea30800000000000000
+      internalID: 4244823324012172418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_5
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1418
+        width: 222
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9faf247fa35a87f40800000000000000
+      internalID: 5726508598876633849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_6
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1414
+        width: 234
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8d765f516cd5630800000000000000
+      internalID: 3917505048496036027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_7
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 1430
+        width: 217
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568dbdf5ed22297d0800000000000000
+      internalID: -2913227670468962203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_8
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 1414
+        width: 226
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72d465b9669c2e830800000000000000
+      internalID: 4099060053390544167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_9
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1172
+        width: 342
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df8f03eb21f3bbd50800000000000000
+      internalID: 6754061415905032445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_10
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1172
+        width: 342
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b88b339034b3f4b0800000000000000
+      internalID: -5407780606820251471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_11
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 1177
+        width: 344
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 323ea58eb781e2f90800000000000000
+      internalID: -6976611852292005085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_12
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 912
+        width: 314
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f5dff3162263d20800000000000000
+      internalID: 3257829181529874247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_13
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 907
+        width: 318
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3215300755c0bf00800000000000000
+      internalID: 1130620483926299195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_14
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 907
+        width: 158
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c250ac8f140b9b970800000000000000
+      internalID: 8771235546674103596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_15
+      rect:
+        serializedVersion: 2
+        x: 1111
+        y: 907
+        width: 158
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca81e6212191b48a0800000000000000
+      internalID: -6319930086675048276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_16
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 553
+        width: 332
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d338ce84ac6cfeb80800000000000000
+      internalID: -8363247410894568643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_17
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 553
+        width: 335
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08553c501b723eee0800000000000000
+      internalID: -1233098231710001792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_18
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 559
+        width: 332
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2babe87f46e253cd0800000000000000
+      internalID: -2579104200414807374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_scocer_sprite_map_19
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 64
+        width: 986
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e324492ca5917d0800000000000000
+      internalID: -2947224689379754356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

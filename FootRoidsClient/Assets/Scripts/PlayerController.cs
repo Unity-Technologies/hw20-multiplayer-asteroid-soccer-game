@@ -46,8 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
-        ChangeColor();
+                
         MovePlayer();
     }
 
@@ -82,21 +81,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ChangeColor()
+    // TODO: stretch goal. to give player's color a yellow tint
+    private void ChangeColor(Color color)
     {
-        //change speed color
-        if (rb.velocity.magnitude > mediumSpeed && rb.velocity.magnitude < deathSpeed)
-        {
-            sr.color = Color.yellow;
-        }
-        else if (rb.velocity.magnitude > deathSpeed)
-        {
-            sr.color = Color.red;
-        }
-        else
-        {
-            sr.color = Color.white;
-        }
+        sr.color = color;
     }
 
     private void MovePlayer()
@@ -107,8 +95,6 @@ public class PlayerController : MonoBehaviour
         //rotate the ship 
         transform.Rotate(Vector3.forward * -turnInput * Time.deltaTime * turnThrust);
 
-        return;
-        
         // Screen wrapping
         Vector2 newPos = transform.position;
 

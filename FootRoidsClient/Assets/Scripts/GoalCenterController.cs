@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class GoalCenterController : MonoBehaviour
 {
-    static int goalScore = 0;
-    // Start is called before the first frame update
+    private AudioSource audioSource;
+    public ScoreScript ScoreText;
+    public GameSceneController GameScene;
+    private int goalScore = 0;
+    public GameObject explosionPrefab;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {   
         if (collision.gameObject.tag.Equals("Ball"))
         {
-            ScoreScript.scoreValue += 1;
+            goalScore = goalScore + 1;
+            ScoreText.SetScore(goalScore);
+            // play score sound 
+            audioSource.Play();
+
+            // show explosion gameObject
+            var explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
+            Destroy(explosion, 4);
+
             Destroy (collision.gameObject); // Destroy the colliding socccer ball
-            Debug.Log($"score: {ScoreScript.scoreValue}");
+            //GameScene.SpawnBall();
         }
-    }
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
