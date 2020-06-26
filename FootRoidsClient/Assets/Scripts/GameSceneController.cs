@@ -31,11 +31,8 @@ public class GameSceneController : Singleton<GameSceneController>
 
     [Header("Player Settings")]
     [Space]
-    [SerializeField] GameObject playerObjectPrefab;
-    [SerializeField] GameObject playerObjectPrefab_Simulation;
-    [SerializeField] GameObject playerObjectPrefab_Network;
-    [SerializeField] GameObject playerObjectPrefab_Network_Simulation;
-    [SerializeField] int numOfPlayers;
+    [SerializeField] GameObject[] playerShipPrefabsBlue;
+    [SerializeField] GameObject[] playerShipPrefabsRed;
 
     [Header("Ball Settings")]
     [Space]
@@ -52,6 +49,7 @@ public class GameSceneController : Singleton<GameSceneController>
     
     readonly Dictionary<int, GameObject> playerShips = new Dictionary<int, GameObject>();
     readonly Dictionary<int, GameObject> activeAsteroids = new Dictionary<int, GameObject>();
+    readonly Dictionary<int, GameObject> activeBalls = new Dictionary<int, GameObject>();
 
     //public GameObject[] teams;
     //public GameObject teamObjectPrefab;
@@ -75,6 +73,7 @@ public class GameSceneController : Singleton<GameSceneController>
         {
             MatchCommunicationManager.Instance.OnPlayerPositionUpdated += PlayerPositionUpdated;
             MatchCommunicationManager.Instance.OnAsteroidPositionUpdated += AsteroidPositionUpdated;
+            MatchCommunicationManager.Instance.OnBallPositionUpdated += BallPositionUpdated;
         }
 
         if (MatchMaker.Instance.IsHost)
@@ -129,12 +128,15 @@ public class GameSceneController : Singleton<GameSceneController>
     // Spawn Players in sides of the field ##Needs Fixing
     private void SpawnPlayers()
     {
+        bool teamAssignment = false;
+        int playerIndex = 0;
+
         foreach (var player in MatchMaker.Instance.ReadyPlayers)
         {
             float horizontalPosition = Random.Range(-screenBounds.x, screenBounds.x);
             float verticalPosition = Random.Range(-screenBounds.y, screenBounds.y);
 
-            MatchMessageSpawnElement element = new MatchMessageSpawnElement(player.UserId, horizontalPosition,
+            MatchMessageSpawnShip element = new MatchMessageSpawnShip(player.UserId, teamAssignment, playerIndex, horizontalPosition,
                 verticalPosition, 0.0f);
 
             // tell the clients
@@ -144,6 +146,10 @@ public class GameSceneController : Singleton<GameSceneController>
             // tell yourself (host)
             MatchCommunicationManager.Instance.SendMatchStateMessageSelf(
                 MatchMessageType.PlayerSpawned, element);
+
+            teamAssignment = !teamAssignment;
+            playerIndex++;
+            playerIndex /= 2;
         }
     }
 
@@ -233,7 +239,7 @@ public class GameSceneController : Singleton<GameSceneController>
         }
     }
 
-    private void OnSpawnPlayers(MatchMessageSpawnElement message)
+    private void OnSpawnPlayers(MatchMessageSpawnShip message)
     {
         Debug.Log("Spawning Player");
 
@@ -243,35 +249,14 @@ public class GameSceneController : Singleton<GameSceneController>
 
         try
         {
-
             UnityMainThreadDispatcher.Instance().Enqueue(() => {
                 Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
                 Vector3 pos = new Vector3(message.x, message.y);
 
-                var userId = ServerSessionManager.Instance.Session.UserId.GetHashCode();
-                GameObject shipPrefab;
+                GameObject prefab = message.team ? playerShipPrefabsRed[message.playerIndex] : playerShipPrefabsBlue[message.playerIndex];
                 
-                if (MatchMaker.Instance.IsHost)
-                {
-                    // If true (my ship): Full input, full collisions
-                    // If false (other player): No input, full collisions 
-                    shipPrefab = message.elementId == userId ? playerObjectPrefab : playerObjectPrefab_Simulation;
-                    
-                }
-                else
-                {
-                    // If true (my ship): Full input, no collisions
-                    // If false (other player): No input, no collisions
-                    shipPrefab = message.elementId == userId ? playerObjectPrefab_Network : playerObjectPrefab_Network_Simulation;
-                    
-                }
-                
-                var shipInstance = Instantiate(shipPrefab, pos, rot, transform);
-                if (shipInstance.TryGetComponent(out PlayerController playerController))
-                {
-                    playerController.id = message.elementId;
-                }
-
+                var shipInstance = Instantiate(prefab, pos, rot, transform);
+                shipInstance.GetComponent<PlayerController>().SetTeamAndId(message.team, message.elementId);
                 playerShips.Add(message.elementId, shipInstance);
                 
             });
@@ -295,7 +280,12 @@ public class GameSceneController : Singleton<GameSceneController>
             UnityMainThreadDispatcher.Instance().Enqueue(() => {
                 Quaternion rot = Quaternion.AngleAxis(message.angle, Vector3.forward);
                 Vector3 pos = new Vector3(message.x, message.y);
-                GameObject roid = Instantiate(ballObjectPrefab, pos, rot, transform);
+                
+                GameObject ball = Instantiate(ballObjectPrefab, pos, rot, transform);
+                ball.GetComponent<BallScript>().id = message.elementId;
+                
+                activeBalls.Add(message.elementId, ball);
+
             });
         }
         catch (System.Exception e)
@@ -373,6 +363,20 @@ public class GameSceneController : Singleton<GameSceneController>
         if(roid != null)
         {
             roid.transform.position = new Vector3(x, y, 0);
+        }
+    }
+    
+    void BallPositionUpdated(float x, float y, float angle, int id)
+    {
+        activeBalls.TryGetValue(id, out GameObject ball);
+        if(ball != null)
+        {
+            ball.transform.position = new Vector3(x, y, 0.0f);
+            
+            var newRot = ball.transform.eulerAngles;
+            newRot.z = angle;
+            
+            ball.transform.eulerAngles = newRot;
         }
     }
 }

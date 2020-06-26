@@ -22,7 +22,14 @@ public class PlayerController : MonoBehaviour
     // Access the GameSceneController
     public GameSceneController gameSceneController;
 
-    public int id { get; set; }
+    public void SetTeamAndId(bool team, int id)
+    {
+        this.team = team;
+        this.id = id;
+    }
+
+    bool team;
+    int id;
     
     public float thrustInput { get; set; }
     public float turnInput { get; set; }
@@ -30,6 +37,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (id != ServerSessionManager.Instance.Session.UserId.GetHashCode())
+        {
+            GetComponent<PlayerInput>().enabled = false;
+        }
+        
         gameSceneController = FindObjectOfType<GameSceneController>();
         rb = GetComponentInParent<Rigidbody2D>();
         sr = GetComponentInParent<SpriteRenderer>();

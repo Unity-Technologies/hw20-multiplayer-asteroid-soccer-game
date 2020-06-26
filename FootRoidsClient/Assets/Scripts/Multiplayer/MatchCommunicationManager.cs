@@ -32,11 +32,12 @@ namespace Multiplayer
         // end
 
         public event Action<MatchMessageSpawnElement> OnAsteroidSpawned;
-        public event Action<MatchMessageSpawnElement> OnPlayerSpawned;
+        public event Action<MatchMessageSpawnShip> OnPlayerSpawned;
         public event Action<MatchMessageSpawnElement> OnBallSpawned;
         public event Action<MatchMessageSpawnElement> OnGoalSpawned;
 
         public event Action<float, float, float, int> OnPlayerPositionUpdated;
+        public event Action<float, float, float, int> OnBallPositionUpdated;
         public event Action<float, int> OnPlayerInputRotationUpdated;
         public event Action<float, int> OnPlayerInputThrustUpdated;
 
@@ -132,7 +133,7 @@ namespace Multiplayer
                     OnAsteroidSpawned?.Invoke(message as MatchMessageSpawnElement);
                     break;
                 case MatchMessageType.PlayerSpawned:
-                    OnPlayerSpawned?.Invoke(message as MatchMessageSpawnElement);
+                    OnPlayerSpawned?.Invoke(message as MatchMessageSpawnShip);
                     break;
                 case MatchMessageType.BallSpawned:
                     OnBallSpawned?.Invoke(message as MatchMessageSpawnElement);
@@ -198,7 +199,7 @@ namespace Multiplayer
                     OnStadiumEntered?.Invoke();
                     break;
                 case MatchMessageType.PlayerSpawned:
-                    MatchMessageSpawnElement playerSpawn = MatchMessageSpawnElement.Parse(messageJson);
+                    MatchMessageSpawnShip playerSpawn = MatchMessageSpawnShip.Parse(messageJson);
                     OnPlayerSpawned?.Invoke(playerSpawn);
                     break;
                 case MatchMessageType.BallSpawned:
@@ -260,6 +261,21 @@ namespace Multiplayer
                     });
                 }
 
+                    break;
+                case MatchMessageType.BallPositionUpdated:
+                {
+                    var positionValues = messageJson.FromJson<MatchMessageBallPositionUpdated>();
+
+                    var posX = positionValues.posX;
+                    var posY = positionValues.posY;
+                    var angle = positionValues.angle;
+                    var id = positionValues.id;
+                    
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        OnBallPositionUpdated?.Invoke(posX, posY, angle, id);
+                    });
+                }
                     break;
                 default:
                     Debug.Log("Needs more implementation!");

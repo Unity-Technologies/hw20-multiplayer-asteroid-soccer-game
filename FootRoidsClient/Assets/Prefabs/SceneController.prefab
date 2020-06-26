@@ -52,15 +52,14 @@ MonoBehaviour:
     type: 3}
   dummyAsteroid: {fileID: 4581584504479797239, guid: f56f599c16ba245b48ed95b314a961a9,
     type: 3}
-  playerObjectPrefab: {fileID: 304458594359201552, guid: 0d9e09bb89af64d55aa8e2901fb0d645,
-    type: 3}
-  playerObjectPrefab_Simulation: {fileID: 7695496603641100832, guid: beaa178deebbd0a4eb43a9e0afab709d,
-    type: 3}
-  playerObjectPrefab_Network: {fileID: 1997850549995088431, guid: 4bc5b6ec4c9c9584e8dd0ff97a9f1e95,
-    type: 3}
-  playerObjectPrefab_Network_Simulation: {fileID: 2911839639754611756, guid: 5be2123b3a6467c419911850d93d49a0,
-    type: 3}
-  numOfPlayers: 1
+  playerShipPrefabsBlue:
+  - {fileID: 6582869795072998475, guid: b62baa9caaaae4d1192d5b38248dde70, type: 3}
+  - {fileID: 7917736735995554203, guid: f42db1eb9ea144dc4b3c87f52e147c36, type: 3}
+  - {fileID: 2999048265239441924, guid: baa86bff2213f4936b176d623eafaf2d, type: 3}
+  playerShipPrefabsRed:
+  - {fileID: 1440762287443198721, guid: 9f17c9b1294b64b5989b7a3885e1d139, type: 3}
+  - {fileID: 4062367265712477087, guid: 8fdaaa0f4ed344a648b0e92c9e1f6f25, type: 3}
+  - {fileID: 4515631337778301138, guid: 0d9ad1661cab74ec49985621740eed40, type: 3}
   balls: []
   ballObjectPrefab: {fileID: 3349321676048958299, guid: 6f72350364a194ccbb465c9d68e02f36,
     type: 3}
